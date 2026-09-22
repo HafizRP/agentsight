@@ -8,3 +8,4 @@ logs/
 .hermes_task_payload.tmp
 *.log
 agentsight_pgdata/
+server
