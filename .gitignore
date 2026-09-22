@@ -1,0 +1,9 @@
+node_modules/
+bin/
+tmp/
+volumes/
+logs/
+.env
+.hermes_task_payload.tmp
+*.log
+agentsight_pgdata/
