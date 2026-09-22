@@ -48,6 +48,9 @@ func (s *skillService) GetBySlug(ctx context.Context, slug string, currentUserID
 	if err != nil {
 		return nil, err
 	}
+	if skill == nil {
+		return nil, errors.New("skill not found")
+	}
 
 	isBookmarked := false
 	if currentUserID > 0 && s.bookmarkRepo != nil {

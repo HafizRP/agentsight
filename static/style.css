@@ -1,0 +1,153 @@
+/* AgentSight - Custom Styling */
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+  }
+  .cyan-glow {
+    text-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Card Hover and Transitions */
+.skill-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
+  background-color: #111827;
+  border-color: #1f2937;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.55),
+              0 0 16px -2px rgba(139, 92, 246, 0.15);
+}
+
+/* Search Container Focus Animation */
+.search-input-wrapper {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2),
+              0 8px 24px -4px rgba(139, 92, 246, 0.2);
+}
+
+/* Code Block Theming */
+pre code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.code-container {
+  position: relative;
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 0.5rem;
+}
+
+/* Bookmark Pulse Animation */
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bookmark-pulse {
+  animation: heartPulse 0.45s ease-in-out;
+}
+
+/* HTMX Indicator */
+.htmx-indicator {
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+  pointer-events: none;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+  opacity: 1;
+}
+
+/* Velocity Pill */
+.velocity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Platform Badges */
+.badge-cursor {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.badge-claude {
+  background-color: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.badge-gemini {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-mcp {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.badge-copilot {
+  background-color: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.badge-generic {
+  background-color: rgba(100, 116, 139, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}

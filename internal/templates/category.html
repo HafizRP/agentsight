@@ -1,0 +1,45 @@
+{{define "content"}}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Category Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
+        {{categoryIcon .Category}}
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-white tracking-tight capitalize">
+          Category: {{.Category}}
+        </h1>
+        <p class="text-slate-400 text-sm">
+          Found <span class="text-white font-semibold">{{.Total}}</span> skills indexed in this category
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Filter Pills -->
+  <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar border-b border-slate-800">
+    <a href="/category/rules" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "rules"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "rules"}} Rules
+    </a>
+    <a href="/category/skills" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "skills"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "skills"}} Skills
+    </a>
+    <a href="/category/mcp_servers" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "mcp_servers"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "mcp_servers"}} MCP Servers
+    </a>
+    <a href="/category/prompts" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "prompts"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "prompts"}} Prompts
+    </a>
+    <a href="/category/frameworks" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "frameworks"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "frameworks"}} Frameworks
+    </a>
+    <a href="/category/tools" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition {{if eq .Category "tools"}}bg-violet-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      {{categoryIcon "tools"}} Tools
+    </a>
+  </div>
+
+  <!-- Skill Cards Grid -->
+  {{template "skill_list" (dict "Skills" .Skills "Total" .Total "Page" .Page "TotalPages" .TotalPages "Category" .Category "InfiniteURL" (print "/category/" .Category "?page=" (add .Page 1)))}}
+</div>
+{{end}}

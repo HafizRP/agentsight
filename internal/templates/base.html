@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{if .Title}}{{.Title}} - {{end}}AgentSight | AI Agent Skill Discovery</title>
+  <meta name="description" content="Discover, rank, and index Cursor rules, Claude AGENTS.md, Gemini skills, and MCP servers.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            slate: {
+              850: '#151f32',
+              900: '#0f172a',
+              950: '#020617',
+            },
+            violet: {
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- HTMX CDN -->
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+  <!-- Highlight.js for Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-violet-500/30 selection:text-violet-200 antialiased">
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-4">
+        
+        <!-- Logo & Wordmark -->
+        <div class="flex items-center gap-6">
+          <a href="/" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center shadow-md shadow-violet-500/20 group-hover:shadow-violet-500/40 transition">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-violet-300 transition">
+              Agent<span class="text-violet-400">Sight</span>
+            </span>
+          </a>
+
+          <!-- Primary Navigation Links -->
+          <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
+            <a href="/trending" class="px-3 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition {{if eq .ActiveNav "trending"}}text-violet-400 bg-slate-900{{else}}text-slate-300{{end}}">
+              Trending
+            </a>
+            <a href="/search" class="px-3 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition {{if eq .ActiveNav "browse"}}text-violet-400 bg-slate-900{{else}}text-slate-300{{end}}">
+              Browse
+            </a>
+
+            <!-- Platforms Dropdown -->
+            <div class="relative group">
+              <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 text-slate-300 transition">
+                Platforms
+                <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-200 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="absolute left-0 mt-1 w-48 rounded-lg bg-slate-900 border border-slate-800 shadow-xl py-1 hidden group-hover:block z-50">
+                <a href="/platform/cursor" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-blue-400"></span> Cursor
+                </a>
+                <a href="/platform/claude" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-orange-400"></span> Claude
+                </a>
+                <a href="/platform/gemini" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Gemini
+                </a>
+                <a href="/platform/mcp" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-purple-400"></span> MCP
+                </a>
+                <a href="/platform/copilot" class="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-sky-400"></span> Copilot
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Global Search Bar (Compact / Expandable) -->
+        <div class="flex-1 max-w-md hidden sm:block">
+          <form action="/search" method="GET" class="relative">
+            <input type="text" name="q" id="nav-search-input" value="{{if .Query}}{{.Query}}{{end}}"
+                   placeholder="Search skills, rules, MCP servers..."
+                   class="w-full bg-slate-900/90 text-sm text-slate-100 placeholder-slate-400 pl-9 pr-8 py-1.5 rounded-lg border border-slate-700/80 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition">
+            <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <kbd class="hidden sm:inline-block absolute right-2.5 top-2 text-[10px] font-mono text-slate-400 bg-slate-800 border border-slate-700 px-1.5 py-0.5 rounded shadow-sm">/</kbd>
+          </form>
+        </div>
+
+        <!-- User Authentication Area -->
+        <div class="flex items-center gap-3">
+          {{if .User}}
+            <!-- Authenticated State -->
+            <div class="relative group">
+              <button type="button" class="flex items-center gap-2 p-1 rounded-full hover:bg-slate-800 transition">
+                {{if .User.AvatarURL}}
+                  <img src="{{.User.AvatarURL}}" alt="{{.User.Username}}" class="w-8 h-8 rounded-full border border-violet-500/40">
+                {{else}}
+                  <div class="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center font-bold text-xs text-white">
+                    {{truncate .User.Username 2}}
+                  </div>
+                {{end}}
+                <span class="text-sm font-medium text-slate-200 hidden sm:inline">{{.User.Username}}</span>
+                <svg class="w-3.5 h-3.5 text-slate-400 hidden sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <!-- User Menu Dropdown -->
+              <div class="absolute right-0 mt-1 w-48 rounded-lg bg-slate-900 border border-slate-800 shadow-xl py-1 hidden group-hover:block z-50">
+                <div class="px-4 py-2 border-b border-slate-800">
+                  <p class="text-xs text-slate-400">Signed in as</p>
+                  <p class="text-sm font-semibold text-white truncate">{{.User.Username}}</p>
+                </div>
+                <form action="/auth/logout" method="POST">
+                  <button type="submit" class="w-full text-left px-4 py-2 text-sm text-rose-400 hover:bg-slate-800 hover:text-rose-300 transition flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Sign Out
+                  </button>
+                </form>
+              </div>
+            </div>
+          {{else}}
+            <!-- Unauthenticated State -->
+            <a href="/login" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <span>Sign In</span>
+            </a>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Placeholder -->
+  <main class="flex-grow">
+    {{template "content" .}}
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 py-10 mt-16 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded bg-violet-600 flex items-center justify-center text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-bold text-slate-200">AgentSight</span>
+            <span class="mx-2 text-slate-600">·</span>
+            <span class="text-xs text-slate-400">Built for the agentic era</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-sm">
+          <a href="/trending" class="hover:text-violet-400 transition">Trending</a>
+          <a href="/search" class="hover:text-violet-400 transition">Search</a>
+          <a href="/platform/cursor" class="hover:text-blue-400 transition">Cursor</a>
+          <a href="/platform/claude" class="hover:text-orange-400 transition">Claude</a>
+          <a href="/platform/gemini" class="hover:text-emerald-400 transition">Gemini</a>
+          <a href="/platform/mcp" class="hover:text-purple-400 transition">MCP</a>
+          <a href="https://github.com/HafizRP/agentsight" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom App JavaScript -->
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -156,9 +157,13 @@ func TestAPIEndpoints(t *testing.T) {
 		expectCode int
 	}{
 		{"landing page html", http.MethodGet, "/", http.StatusOK},
+		{"login page html", http.MethodGet, "/login", http.StatusOK},
 		{"trending page html", http.MethodGet, "/trending", http.StatusOK},
 		{"category page html", http.MethodGet, "/category/rules", http.StatusOK},
 		{"platform page html", http.MethodGet, "/platform/cursor", http.StatusOK},
+		{"skill detail page html", http.MethodGet, "/skill/cursor-rule-1", http.StatusOK},
+		{"skill detail not found", http.MethodGet, "/skill/non-existent", http.StatusNotFound},
+		{"search page html", http.MethodGet, "/search?q=cursor", http.StatusOK},
 		{"api skills", http.MethodGet, "/api/v1/skills", http.StatusOK},
 		{"api search", http.MethodGet, "/api/v1/search?q=cursor", http.StatusOK},
 		{"api trending", http.MethodGet, "/api/v1/trending", http.StatusOK},
@@ -175,6 +180,80 @@ func TestAPIEndpoints(t *testing.T) {
 
 			if rec.Code != ep.expectCode {
 				t.Errorf("%s %s expected status %d, got %d", ep.method, ep.url, ep.expectCode, rec.Code)
+			}
+		})
+	}
+}
+
+func TestHTMXEndpoints(t *testing.T) {
+	router := setupTestRouter()
+
+	htmxEndpoints := []struct {
+		name         string
+		method       string
+		url          string
+		auth         bool
+		expectCode   int
+		expectedBody string
+	}{
+		{
+			name:         "htmx search partial",
+			method:       http.MethodGet,
+			url:          "/search?q=cursor",
+			expectCode:   http.StatusOK,
+			expectedBody: "search-results",
+		},
+		{
+			name:         "htmx platform partial",
+			method:       http.MethodGet,
+			url:          "/platform/cursor",
+			expectCode:   http.StatusOK,
+			expectedBody: "skill-card",
+		},
+		{
+			name:         "htmx category partial",
+			method:       http.MethodGet,
+			url:          "/category/rules",
+			expectCode:   http.StatusOK,
+			expectedBody: "skill-card",
+		},
+		{
+			name:         "htmx trending partial",
+			method:       http.MethodGet,
+			url:          "/trending",
+			expectCode:   http.StatusOK,
+			expectedBody: "skill-card",
+		},
+		{
+			name:         "htmx toggle bookmark authorized",
+			method:       http.MethodPost,
+			url:          "/api/v1/bookmarks/1",
+			auth:         true,
+			expectCode:   http.StatusOK,
+			expectedBody: "bookmark-btn-1",
+		},
+	}
+
+	for _, ep := range htmxEndpoints {
+		t.Run(ep.name, func(t *testing.T) {
+			req := httptest.NewRequest(ep.method, ep.url, nil)
+			req.Header.Set("HX-Request", "true")
+			if ep.auth {
+				req.AddCookie(&http.Cookie{
+					Name:  "agentsight_session",
+					Value: "valid",
+				})
+			}
+			rec := httptest.NewRecorder()
+			router.ServeHTTP(rec, req)
+
+			t.Logf("[%s] code=%d body_len=%d body=%q", ep.name, rec.Code, rec.Body.Len(), rec.Body.String())
+
+			if rec.Code != ep.expectCode {
+				t.Fatalf("%s expected status %d, got %d", ep.name, ep.expectCode, rec.Code)
+			}
+			if ep.expectedBody != "" && !strings.Contains(rec.Body.String(), ep.expectedBody) {
+				t.Errorf("%s body missing %q, got: %s", ep.name, ep.expectedBody, rec.Body.String())
 			}
 		})
 	}

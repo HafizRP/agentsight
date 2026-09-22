@@ -6,6 +6,7 @@ import (
 
 	"agentsight/internal/middleware"
 	"agentsight/internal/repository"
+	"agentsight/internal/templates"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -34,6 +35,18 @@ func (h *BookmarkHandler) APIToggleBookmark(w http.ResponseWriter, r *http.Reque
 	bookmarked, err := h.bookmarkRepo.Toggle(r.Context(), user.ID, skillID)
 	if err != nil {
 		respondError(w, http.StatusInternalServerError, "failed to toggle bookmark: "+err.Error())
+		return
+	}
+
+	if isHXRequest(r) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		data := map[string]interface{}{
+			"SkillID":    skillID,
+			"Bookmarked": bookmarked,
+		}
+		if err := templates.Default().RenderPartial(w, "_bookmark_button.html", data); err != nil {
+			respondError(w, http.StatusInternalServerError, "failed to render bookmark button: "+err.Error())
+		}
 		return
 	}
 

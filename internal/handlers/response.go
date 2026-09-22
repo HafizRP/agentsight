@@ -30,3 +30,7 @@ func wantsJSON(r *http.Request) bool {
 	accept := r.Header.Get("Accept")
 	return strings.Contains(accept, "application/json") || strings.HasPrefix(r.URL.Path, "/api/")
 }
+
+func isHXRequest(r *http.Request) bool {
+	return r.Header.Get("HX-Request") == "true"
+}

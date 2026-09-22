@@ -14,6 +14,7 @@ import (
 	"agentsight/internal/handlers"
 	"agentsight/internal/middleware"
 	"agentsight/internal/repository"
+	"agentsight/internal/scraper"
 	"agentsight/internal/service"
 	"github.com/go-chi/chi/v5"
 )
@@ -44,6 +45,13 @@ func main() {
 
 	repos := repository.NewPostgresRepositories(pool)
 	services := service.NewServices(repos, cfg)
+
+	appCtx, appCancel := context.WithCancel(context.Background())
+	defer appCancel()
+
+	scraperScheduler := scraper.NewScheduler(repos, cfg)
+	scraperScheduler.Start(appCtx)
+	defer scraperScheduler.Stop()
 
 	rateLimiter := middleware.NewRateLimiter(60, time.Minute)
 	defer rateLimiter.Close()

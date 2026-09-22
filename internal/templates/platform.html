@@ -1,0 +1,40 @@
+{{define "content"}}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Platform Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold capitalize {{platformColor .Platform}}">
+        {{.Platform}}
+      </span>
+      <h1 class="text-3xl font-extrabold text-white tracking-tight capitalize">
+        {{.Platform}} Skills & Rules
+      </h1>
+    </div>
+    <p class="text-slate-400 text-sm">
+      Found <span class="text-white font-semibold">{{.Total}}</span> skills optimized for the <span class="capitalize text-slate-200">{{.Platform}}</span> ecosystem
+    </p>
+  </div>
+
+  <!-- Platform Filter Pills -->
+  <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar border-b border-slate-800">
+    <a href="/platform/cursor" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition {{if eq .Platform "cursor"}}bg-blue-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      <span class="w-2 h-2 rounded-full bg-blue-400"></span> Cursor
+    </a>
+    <a href="/platform/claude" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition {{if eq .Platform "claude"}}bg-orange-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      <span class="w-2 h-2 rounded-full bg-orange-400"></span> Claude
+    </a>
+    <a href="/platform/gemini" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition {{if eq .Platform "gemini"}}bg-emerald-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Gemini
+    </a>
+    <a href="/platform/mcp" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition {{if eq .Platform "mcp"}}bg-purple-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      <span class="w-2 h-2 rounded-full bg-purple-400"></span> MCP
+    </a>
+    <a href="/platform/copilot" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition {{if eq .Platform "copilot"}}bg-sky-600 text-white shadow-md{{else}}bg-slate-900 text-slate-400 hover:text-white border border-slate-800{{end}}">
+      <span class="w-2 h-2 rounded-full bg-sky-400"></span> Copilot
+    </a>
+  </div>
+
+  <!-- Skill Cards Grid -->
+  {{template "skill_list" (dict "Skills" .Skills "Total" .Total "Page" .Page "TotalPages" .TotalPages "Platform" .Platform "InfiniteURL" (print "/platform/" .Platform "?page=" (add .Page 1)))}}
+</div>
+{{end}}

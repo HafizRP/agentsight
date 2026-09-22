@@ -9,6 +9,7 @@ import (
 
 	"agentsight/internal/middleware"
 	"agentsight/internal/service"
+	"agentsight/internal/templates"
 )
 
 type AuthHandler struct {
@@ -17,6 +18,24 @@ type AuthHandler struct {
 
 func NewAuthHandler(authService service.AuthService) *AuthHandler {
 	return &AuthHandler{authService: authService}
+}
+
+func (h *AuthHandler) HandleLoginPage(w http.ResponseWriter, r *http.Request) {
+	if u := middleware.UserFromContext(r.Context()); u != nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	data := map[string]interface{}{
+		"Title": "Sign In",
+		"User":  middleware.UserFromContext(r.Context()),
+	}
+
+	if err := templates.Default().Render(w, "auth/login.html", data); err != nil {
+		respondError(w, http.StatusInternalServerError, "failed to render login page: "+err.Error())
+		return
+	}
 }
 
 func (h *AuthHandler) HandleGitHubLogin(w http.ResponseWriter, r *http.Request) {

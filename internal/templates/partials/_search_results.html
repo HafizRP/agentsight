@@ -1,0 +1,39 @@
+{{define "search_results"}}
+<div id="search-results">
+  <!-- Search Results Count & Meta Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 mb-6 border-b border-slate-800">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h2 class="text-lg font-bold text-white">
+        {{if .Query}}
+          Results for <span class="text-violet-400">"{{.Query}}"</span>
+        {{else}}
+          All Skills
+        {{end}}
+      </h2>
+      <span class="text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-full">
+        {{.Total}} indexed
+      </span>
+      {{if .Platform}}
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full {{platformColor .Platform}}">
+          {{.Platform}}
+        </span>
+      {{end}}
+      {{if .Category}}
+        <span class="text-xs text-slate-300 bg-slate-800 px-2 py-0.5 rounded-md flex items-center gap-1">
+          {{categoryIcon .Category}}
+          {{.Category}}
+        </span>
+      {{end}}
+    </div>
+
+    <div class="text-xs text-slate-400 font-medium">
+      {{if gt .TotalPages 0}}
+        Page <span class="text-slate-200">{{.Page}}</span> of <span class="text-slate-200">{{.TotalPages}}</span>
+      {{end}}
+    </div>
+  </div>
+
+  <!-- Skill Cards Grid -->
+  {{template "skill_list" .}}
+</div>
+{{end}}

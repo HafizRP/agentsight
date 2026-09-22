@@ -1,0 +1,29 @@
+{{define "bookmark_button"}}
+{{- $skillID := 0 -}}
+{{- if .ID -}}
+  {{- $skillID = .ID -}}
+{{- else if .SkillID -}}
+  {{- $skillID = .SkillID -}}
+{{- else if .Skill -}}
+  {{- $skillID = .Skill.ID -}}
+{{- end -}}
+
+{{- $isBookmarked := false -}}
+{{- if .Bookmarked -}}
+  {{- $isBookmarked = .Bookmarked -}}
+{{- else if .IsBookmarked -}}
+  {{- $isBookmarked = .IsBookmarked -}}
+{{- end -}}
+
+<button id="bookmark-btn-{{$skillID}}"
+        hx-post="/api/v1/bookmarks/{{$skillID}}"
+        hx-swap="outerHTML"
+        type="button"
+        class="inline-flex items-center justify-center p-2 rounded-lg border transition group/btn {{if $isBookmarked}}bg-rose-500/10 border-rose-500/30 text-rose-400 hover:bg-rose-500/20{{else}}bg-slate-800/80 border-slate-700/80 text-slate-400 hover:text-rose-400 hover:border-slate-600{{end}}"
+        title="{{if $isBookmarked}}Remove bookmark{{else}}Bookmark skill{{end}}"
+        aria-label="{{if $isBookmarked}}Remove bookmark{{else}}Bookmark skill{{end}}">
+  <svg class="w-4 h-4 {{if $isBookmarked}}fill-rose-500 text-rose-500 bookmark-pulse{{else}}fill-none stroke-current{{end}} transition-transform group-hover/btn:scale-110" viewBox="0 0 24 24" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+  </svg>
+</button>
+{{end}}

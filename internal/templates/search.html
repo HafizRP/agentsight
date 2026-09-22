@@ -1,0 +1,176 @@
+{{define "content"}}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Search Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2">Explore AI Agent Skills</h1>
+    <p class="text-slate-400 text-sm">Discover and filter across platforms, categories, and frameworks</p>
+  </div>
+
+  <form id="search-form" action="/search" method="GET" class="space-y-6">
+    <!-- Big Search Input with Real-time HTMX Trigger -->
+    <div class="search-input-wrapper relative flex items-center bg-slate-900 border border-slate-700/80 rounded-xl p-2 shadow-lg">
+      <div class="pl-3 pr-2 text-slate-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <input type="text" name="q" id="search-page-input"
+             value="{{.Params.Query}}"
+             placeholder="Search by keywords, language (python, go), tools, or author..."
+             hx-get="/search"
+             hx-trigger="keyup changed delay:300ms"
+             hx-target="#search-results"
+             hx-include="#search-form"
+             hx-push-url="true"
+             hx-indicator="#search-loading"
+             class="w-full bg-transparent text-sm sm:text-base text-white placeholder-slate-400 focus:outline-none py-1.5 px-2">
+      
+      <!-- HTMX Loading Spinner -->
+      <div id="search-loading" class="htmx-indicator pr-3">
+        <svg class="animate-spin h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </div>
+
+      <button type="submit" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition shadow-md shadow-violet-600/30">
+        Search
+      </button>
+    </div>
+
+    <!-- Main Content Area: Filter Sidebar + Results Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Filter Sidebar -->
+      <aside class="space-y-6 bg-slate-900/60 p-5 rounded-xl border border-slate-800 h-fit">
+        <!-- Sort Control -->
+        <div>
+          <label for="sort-select" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Sort By</label>
+          <select id="sort-select" name="sort"
+                  hx-get="/search"
+                  hx-trigger="change"
+                  hx-target="#search-results"
+                  hx-include="#search-form"
+                  hx-push-url="true"
+                  class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-sm rounded-lg p-2.5 focus:border-violet-500 focus:outline-none">
+            <option value="relevance" {{if eq .Params.Sort "relevance"}}selected{{end}}>Relevance</option>
+            <option value="stars" {{if eq .Params.Sort "stars"}}selected{{end}}>Most Stars</option>
+            <option value="trending" {{if eq .Params.Sort "trending"}}selected{{end}}>Trending (Velocity)</option>
+            <option value="newest" {{if eq .Params.Sort "newest"}}selected{{end}}>Recently Added</option>
+          </select>
+        </div>
+
+        <!-- Platform Filter -->
+        <div>
+          <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Platform</span>
+          <div class="space-y-2 text-sm">
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="" {{if eq .Params.Platform ""}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>All Platforms</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="cursor" {{if eq .Params.Platform "cursor"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              <span>Cursor</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="claude" {{if eq .Params.Platform "claude"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+              <span>Claude</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="gemini" {{if eq .Params.Platform "gemini"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Gemini</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="mcp" {{if eq .Params.Platform "mcp"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+              <span>MCP</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="platform" value="copilot" {{if eq .Params.Platform "copilot"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+              <span>Copilot</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="pt-4 border-t border-slate-800">
+          <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Category</span>
+          <div class="space-y-2 text-sm">
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="" {{if eq .Params.Category ""}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>All Categories</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="rules" {{if eq .Params.Category "rules"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>Rules</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="skills" {{if eq .Params.Category "skills"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>Skills</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="mcp_servers" {{if eq .Params.Category "mcp_servers"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>MCP Servers</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="prompts" {{if eq .Params.Category "prompts"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>Prompts</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="frameworks" {{if eq .Params.Category "frameworks"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>Frameworks</span>
+            </label>
+            <label class="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer">
+              <input type="radio" name="category" value="tools" {{if eq .Params.Category "tools"}}checked{{end}}
+                     hx-get="/search" hx-trigger="change" hx-target="#search-results" hx-include="#search-form" hx-push-url="true"
+                     class="text-violet-600 focus:ring-violet-500 rounded bg-slate-950 border-slate-700">
+              <span>Tools</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="pt-4 border-t border-slate-800">
+          <a href="/search" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition">
+            Reset Filters
+          </a>
+        </div>
+      </aside>
+
+      <!-- Search Results Grid Area -->
+      <section class="lg:col-span-3">
+        {{template "search_results" (dict "Skills" .Result.Skills "Total" .Result.Total "Page" .Result.Page "Limit" .Result.Limit "TotalPages" .Result.TotalPages "Query" .Params.Query "Platform" .Params.Platform "Category" .Params.Category "Sort" .Params.Sort)}}
+      </section>
+
+    </div>
+  </form>
+</div>
+{{end}}
