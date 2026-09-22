@@ -4,6 +4,7 @@ tmp/
 volumes/
 logs/
 .env
+.hermes_task*
 .hermes_task_payload.tmp
 *.log
 agentsight_pgdata/
