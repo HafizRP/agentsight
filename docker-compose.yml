@@ -1,0 +1,55 @@
+name: agentsight
+
+services:
+  postgres:
+    container_name: agentsight_postgres
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-agentsight}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-agentsight}
+      POSTGRES_DB: ${DB_NAME:-agentsight}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5437}:5432"
+    volumes:
+      - agentsight_pgdata:/var/lib/postgresql/data
+    networks:
+      - agentsight_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-agentsight} -d ${DB_NAME:-agentsight}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    container_name: agentsight_app
+    build: .
+    ports:
+      - "${APP_PORT:-8084}:8080"
+    environment:
+      APP_PORT: "8080"
+      DATABASE_URL: postgres://${DB_USER:-agentsight}:${DB_PASSWORD:-agentsight}@postgres:5432/${DB_NAME:-agentsight}?sslmode=disable
+      CHROME_BIN: /usr/bin/chromium-browser
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+      SESSION_SECRET: ${SESSION_SECRET:-agentsight-dev-secret}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - agentsight_net
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/healthz || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  agentsight_pgdata:
+    name: agentsight_pgdata
+
+networks:
+  agentsight_net:
+    name: agentsight_net
+    driver: bridge
