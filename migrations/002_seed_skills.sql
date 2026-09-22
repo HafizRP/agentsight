@@ -1,5 +1,5 @@
 -- Migrations: 002_seed_skills.sql
--- Curated seed skills dataset
+-- Curated seed skills dataset (100 curated skills across Cursor, MCP, Claude, Gemini, Copilot, and Frameworks)
 
 INSERT INTO skills (
   name, slug, description, platform, category, subcategory,
@@ -33,8 +33,25 @@ INSERT INTO skills (
   ARRAY['nextjs', 'react', 'typescript', 'cursor']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -68,8 +85,25 @@ INSERT INTO skills (
   ARRAY['fastapi', 'python', 'pydantic', 'backend']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -100,11 +134,28 @@ INSERT INTO skills (
   'curl -o .cursor/rules/go-chi.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/go-chi.mdc',
   '.cursor/rules/go-chi.mdc',
   'go',
-  ARRAY['go', 'chi', 'backend', 'clean-architecture']::TEXT[],
+  ARRAY['golang', 'go-chi', 'backend', 'clean-architecture']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -124,22 +175,39 @@ INSERT INTO skills (
   'https://github.com/PatrickJS/awesome-cursorrules',
   'PatrickJS',
   'awesome-cursorrules',
-  2450,
-  160,
+  2150,
+  140,
   70,
   '# Tailwind CSS Guidelines
-- Build dark-first with slate/zinc color scales.
-- Ensure mobile responsiveness with min-w-0 on flex children.
-- Extract reusable badge and button patterns.',
+- Dark-first design system with slate and zinc color scales.
+- Ensure mobile responsiveness with flex-col on small screens.
+- Use CSS variables for design tokens.',
   'Build dark-first with slate/zinc color scales. Ensure mobile responsiveness with min-w-0 on flex children.',
   'curl -o .cursor/rules/tailwind.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/tailwind.mdc',
   '.cursor/rules/tailwind.mdc',
   'css',
-  ARRAY['tailwind', 'css', 'ui', 'design']::TEXT[],
+  ARRAY['tailwind', 'css', 'lucide', 'ui']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -159,22 +227,1339 @@ INSERT INTO skills (
   'https://github.com/PatrickJS/awesome-cursorrules',
   'PatrickJS',
   'awesome-cursorrules',
-  3150,
-  210,
+  3450,
+  230,
   110,
   '# Rust Axum Architecture
 - Use State extractor with Arc<AppState>.
 - Return Result<T, AppError> implementing IntoResponse.
-- Prefer non-blocking I/O throughout.',
+- Prefer zero-copy deserialization with serde.',
   'Use State extractor with Arc<AppState>. Return Result<T, AppError> implementing IntoResponse.',
   'curl -o .cursor/rules/rust-axum.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/rust-axum.mdc',
   '.cursor/rules/rust-axum.mdc',
   'rust',
-  ARRAY['rust', 'axum', 'backend', 'tokio']::TEXT[],
+  ARRAY['rust', 'axum', 'tokio', 'async']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'SQLite Schema & Migration Tools Rule',
+  'sqlite-schema-migration-tools-rule',
+  'Best practices for embedded SQLite database access, WAL mode, pragmas, and schema evolution.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sqlite.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  1640,
+  110,
+  45,
+  '# SQLite Database Standards
+- Always enable PRAGMA journal_mode=WAL.
+- Store timestamps in UTC ISO8601 strings.
+- Use foreign key constraints with PRAGMA foreign_keys = ON.',
+  'Always enable PRAGMA journal_mode=WAL. Store timestamps in UTC ISO8601 strings.',
+  'curl -o .cursor/rules/sqlite.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sqlite.mdc',
+  '.cursor/rules/sqlite.mdc',
+  'sql',
+  ARRAY['sqlite', 'database', 'sql', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Vue 3 & Pinia Composition API Rule',
+  'vue-3-pinia-composition-api-rule',
+  'Composition API standards, TypeScript props, Pinia state stores, and Vue Router guard patterns.',
+  'cursor',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/vue3.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2780,
+  195,
+  65,
+  '# Vue 3 Composition Guidelines
+- Strictly use script setup lang=ts.
+- Use defineProps and defineEmits with TypeScript types.
+- Keep Pinia stores modular with setup store syntax.',
+  'Strictly use script setup lang=ts. Use defineProps and defineEmits with TypeScript types. Keep Pinia stores modular.',
+  'curl -o .cursor/rules/vue3.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/vue3.mdc',
+  '.cursor/rules/vue3.mdc',
+  'vue',
+  ARRAY['vue', 'pinia', 'typescript', 'frontend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Django 5 & Ninja Async API Rule',
+  'django-5-ninja-async-api-rule',
+  'Clean Django 5 patterns using Django-Ninja async router, Pydantic schemas, and optimized QuerySets.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/django.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  1920,
+  150,
+  50,
+  '# Django 5 Ninja Rules
+- Use select_related and prefetch_related to eliminate N+1 queries.
+- Use Django Ninja for OpenAPI endpoints.
+- Utilize async database methods where concurrency is high.',
+  'Use select_related and prefetch_related to eliminate N+1 queries. Use Django Ninja for OpenAPI endpoints.',
+  'curl -o .cursor/rules/django.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/django.mdc',
+  '.cursor/rules/django.mdc',
+  'python',
+  ARRAY['django', 'python', 'backend', 'api']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Docker & Multi-Stage Production Containers',
+  'docker-multi-stage-production-containers',
+  'Minimal, non-root, alpine and scratch base images for secure container deployments.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/docker.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  3100,
+  340,
+  90,
+  '# Docker Container Hardening
+- Run as unprivileged non-root user (UID 10001).
+- Use builder stages to isolate dependencies.
+- Ensure .dockerignore excludes secrets and local cache.',
+  'Run as unprivileged non-root user. Use builder stages to isolate dependencies. Ensure .dockerignore excludes secret files.',
+  'curl -o .cursor/rules/docker.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/docker.mdc',
+  '.cursor/rules/docker.mdc',
+  'dockerfile',
+  ARRAY['docker', 'containers', 'devops', 'security']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'React Native & Expo Router Best Practices',
+  'react-native-expo-router-rule',
+  'File-based routing, native gestures, offline-first SQLite sync, and typed navigation with Expo Router.',
+  'cursor',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/expo-router.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2840,
+  210,
+  80,
+  '# Expo Router Guidelines
+- Structure screens under app/ using file-based routing.
+- Use expo-font and splash screen hooks safely.
+- Prefer react-native-reanimated for 60fps animations.',
+  'File-based routing with Expo Router, typed navigation, and 60fps gesture animations.',
+  'curl -o .cursor/rules/expo-router.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/expo-router.mdc',
+  '.cursor/rules/expo-router.mdc',
+  'typescript',
+  ARRAY['react-native', 'expo', 'mobile', 'typescript']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'SvelteKit 2 & Svelte 5 Runes Standards',
+  'sveltekit-2-runes-standards',
+  'Modern Svelte 5 reactivity using $state, $derived, $effect runes with SvelteKit 2 form actions.',
+  'cursor',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sveltekit-runes.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2410,
+  160,
+  75,
+  '# Svelte 5 Runes Architecture
+- Use $state() and $derived() instead of legacy let and $:
+- Co-locate form actions in +page.server.ts.
+- Type load data with PageData and ActionData.',
+  'Modern Svelte 5 reactivity using runes with SvelteKit 2 server form actions.',
+  'curl -o .cursor/rules/sveltekit-runes.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sveltekit-runes.mdc',
+  '.cursor/rules/sveltekit-runes.mdc',
+  'typescript',
+  ARRAY['svelte', 'sveltekit', 'runes', 'frontend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Astro 4 & Content Collections Architecture',
+  'astro-4-content-collections-architecture',
+  'Content-driven websites with Astro 4 content collections, Zod schemas, and island architecture.',
+  'cursor',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/astro.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  1980,
+  130,
+  60,
+  '# Astro Architecture Standards
+- Keep zero client JavaScript by default; add client:load only when interactive.
+- Validate markdown frontmatter using defineCollection and z.object().
+- Use View Transitions API for seamless navigation.',
+  'Content-driven web apps with Astro 4 content collections and zero JS island hydration.',
+  'curl -o .cursor/rules/astro.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/astro.mdc',
+  '.cursor/rules/astro.mdc',
+  'typescript',
+  ARRAY['astro', 'ssg', 'frontend', 'typescript']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'NestJS Clean Modular Architecture & TypeORM',
+  'nestjs-clean-modular-typeorm-rule',
+  'Enterprise NestJS patterns with domain modules, DTO validation pipes, and transactional TypeORM repositories.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/nestjs.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  3320,
+  270,
+  85,
+  '# NestJS Enterprise Patterns
+- Isolate controllers, services, and repositories per module.
+- Apply ValidationPipe globally with whitelist: true.
+- Use custom decorators for authenticated user extraction.',
+  'Enterprise NestJS patterns with domain modules, DTO validation pipes, and TypeORM transactions.',
+  'curl -o .cursor/rules/nestjs.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/nestjs.mdc',
+  '.cursor/rules/nestjs.mdc',
+  'typescript',
+  ARRAY['nestjs', 'typescript', 'backend', 'typeorm']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Spring Boot 3 & Java 21 Virtual Threads',
+  'spring-boot-3-virtual-threads-rule',
+  'High-throughput REST APIs using Spring Boot 3.2+, Java 21 Project Loom virtual threads, and Spring Data JPA.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/springboot-java21.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2650,
+  220,
+  70,
+  '# Spring Boot 3 Java 21 Guidelines
+- Enable spring.threads.virtual.enabled=true for web requests.
+- Avoid synchronized blocks; use ReentrantLock to avoid pinning carriers.
+- Use record classes for immutable DTOs.',
+  'High-throughput REST APIs using Spring Boot 3.2+, Java 21 virtual threads, and Spring Data JPA.',
+  'curl -o .cursor/rules/springboot-java21.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/springboot-java21.mdc',
+  '.cursor/rules/springboot-java21.mdc',
+  'java',
+  ARRAY['java', 'spring-boot', 'backend', 'virtual-threads']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Ruby on Rails 7.2 Solid Queue & Hotwire',
+  'rails-7-solid-queue-hotwire-rule',
+  'Fullstack Rails 7.2 patterns with Turbo Streams, Stimulus controllers, and Solid Queue background jobs.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/rails-7.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2230,
+  180,
+  55,
+  '# Rails 7.2 Architecture
+- Prefer Turbo Frames and Turbo Streams over custom JSON APIs.
+- Utilize Solid Queue for DB-backed asynchronous job processing.
+- Keep models lean; encapsulate logic in Service Objects or Concerns.',
+  'Fullstack Rails 7.2 patterns with Turbo Streams, Stimulus controllers, and Solid Queue.',
+  'curl -o .cursor/rules/rails-7.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/rails-7.mdc',
+  '.cursor/rules/rails-7.mdc',
+  'ruby',
+  ARRAY['ruby', 'rails', 'hotwire', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Elixir Phoenix LiveView 1.0 Patterns',
+  'elixir-phoenix-liveview-patterns',
+  'Real-time reactive web applications with Elixir Phoenix LiveView, OTP GenServers, and Ecto transactions.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/phoenix-liveview.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2180,
+  150,
+  60,
+  '# Phoenix LiveView Standards
+- Keep state in assigns minimal; use streams for large collections.
+- Handle asynchronous tasks with Task.async and handle_info.
+- Enforce database integrity with Ecto changesets.',
+  'Real-time reactive web applications with Elixir Phoenix LiveView, OTP GenServers, and Ecto.',
+  'curl -o .cursor/rules/phoenix-liveview.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/phoenix-liveview.mdc',
+  '.cursor/rules/phoenix-liveview.mdc',
+  'elixir',
+  ARRAY['elixir', 'phoenix', 'liveview', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Kubernetes Helm & Kustomize Deployment Rule',
+  'kubernetes-helm-kustomize-deployment-rule',
+  'Cloud-native manifests, pod security standards, resource limits, and Helm templating for Kubernetes.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/k8s.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  3540,
+  380,
+  105,
+  '# Kubernetes Manifest Standards
+- Always set memory and CPU requests/limits.
+- Enforce PodSecurityStandard: restricted.
+- Use readiness and liveness probes with appropriate initialDelaySeconds.',
+  'Cloud-native manifests, pod security standards, resource limits, and Helm templating for Kubernetes.',
+  'curl -o .cursor/rules/k8s.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/k8s.mdc',
+  '.cursor/rules/k8s.mdc',
+  'yaml',
+  ARRAY['kubernetes', 'k8s', 'helm', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Terraform & OpenTofu AWS Infrastructure',
+  'terraform-opentofu-aws-infrastructure-rule',
+  'IaC patterns for AWS VPC, ECS, RDS, and IAM using OpenTofu / Terraform with remote S3 state locks.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/terraform.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2890,
+  290,
+  80,
+  '# Terraform & OpenTofu Best Practices
+- Pin provider versions explicitly.
+- Never hardcode secrets; use AWS Secrets Manager data sources.
+- Structure modules into main.tf, variables.tf, and outputs.tf.',
+  'IaC patterns for AWS VPC, ECS, RDS, and IAM using OpenTofu / Terraform with remote state locks.',
+  'curl -o .cursor/rules/terraform.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/terraform.mdc',
+  '.cursor/rules/terraform.mdc',
+  'hcl',
+  ARRAY['terraform', 'opentofu', 'aws', 'iac', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'GraphQL Apollo Server & Nexus Schema Rule',
+  'graphql-apollo-nexus-schema-rule',
+  'Code-first GraphQL API design with Apollo Server 4, DataLoader batching, and custom scalar validation.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/graphql.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  1780,
+  140,
+  45,
+  '# GraphQL Schema Standards
+- Always wrap N+1 field resolvers in DataLoader instances.
+- Enforce query depth and complexity limiting middleware.
+- Define clear input object types for mutations.',
+  'Code-first GraphQL API design with Apollo Server 4, DataLoader batching, and complexity limits.',
+  'curl -o .cursor/rules/graphql.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/graphql.mdc',
+  '.cursor/rules/graphql.mdc',
+  'typescript',
+  ARRAY['graphql', 'apollo', 'api', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'gRPC & Protocol Buffers Microservices Rule',
+  'grpc-protobuf-microservices-rule',
+  'High-performance inter-service communication with Protobuf v3, gRPC streaming, and interceptors.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/grpc.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2490,
+  210,
+  70,
+  '# gRPC Microservices Rules
+- Use standard status codes from google.golang.org/grpc/status.
+- Propagate trace contexts across RPC calls via metadata.
+- Provide streaming bidirectional RPCs with backpressure control.',
+  'High-performance inter-service communication with Protobuf v3, gRPC streaming, and interceptors.',
+  'curl -o .cursor/rules/grpc.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/grpc.mdc',
+  '.cursor/rules/grpc.mdc',
+  'protobuf',
+  ARRAY['grpc', 'protobuf', 'microservices', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Redis Caching & Distributed Locks Pattern',
+  'redis-caching-distributed-locks-rule',
+  'Production Redis patterns: Cache-Aside, Redlock distributed locking, TTL jitter, and Pub/Sub invalidation.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/redis.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2720,
+  240,
+  85,
+  '# Redis Production Patterns
+- Add random jitter (5-15%) to cache TTLs to avoid cache thundering herd.
+- Use SET NX PX for atomic distributed locks.
+- Use Redis pipelining for bulk operations.',
+  'Production Redis patterns: Cache-Aside, Redlock distributed locking, TTL jitter, and pipeline batching.',
+  'curl -o .cursor/rules/redis.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/redis.mdc',
+  '.cursor/rules/redis.mdc',
+  'go',
+  ARRAY['redis', 'cache', 'locks', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'AWS CDK TypeScript Infrastructure Rule',
+  'aws-cdk-typescript-infrastructure-rule',
+  'Object-oriented cloud infrastructure definitions using AWS CDK v2 in TypeScript with L3 constructs.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/aws-cdk.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2350,
+  190,
+  65,
+  '# AWS CDK Standards
+- Keep stacks fine-grained; separate stateful resources from stateless.
+- Use Aspects to enforce tagging and security policies across constructs.
+- Write snapshot tests for all synthesis output.',
+  'Object-oriented cloud infrastructure definitions using AWS CDK v2 in TypeScript with L3 constructs.',
+  'curl -o .cursor/rules/aws-cdk.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/aws-cdk.mdc',
+  '.cursor/rules/aws-cdk.mdc',
+  'typescript',
+  ARRAY['aws', 'cdk', 'typescript', 'iac']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Ansible Playbooks & Idempotent Automation',
+  'ansible-playbooks-automation-rule',
+  'Declarative server provisioning and hardening with idempotent Ansible playbooks and Jinja2 templates.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/ansible.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  1840,
+  160,
+  45,
+  '# Ansible Playbook Standards
+- Ensure all tasks are strictly idempotent.
+- Use Ansible Vault for encrypting sensitive credentials.
+- Group tasks into modular roles with clear handlers.',
+  'Declarative server provisioning and hardening with idempotent Ansible playbooks and Jinja2.',
+  'curl -o .cursor/rules/ansible.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/ansible.mdc',
+  '.cursor/rules/ansible.mdc',
+  'yaml',
+  ARRAY['ansible', 'automation', 'devops', 'linux']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'PyTorch & HuggingFace Inference Rule',
+  'pytorch-huggingface-inference-rule',
+  'Optimized deep learning inference with PyTorch, torch.compile, FlashAttention, and HuggingFace pipelines.',
+  'cursor',
+  'rules',
+  'ai-ml',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/pytorch.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  3950,
+  310,
+  120,
+  '# PyTorch Inference Standards
+- Wrap inference loops in torch.inference_mode().
+- Utilize torch.compile(model, mode=''reduce-overhead'') on modern GPUs.
+- Load models with device_map=''auto'' and torch_dtype=torch.bfloat16.',
+  'Optimized deep learning inference with PyTorch, torch.compile, FlashAttention, and HuggingFace pipelines.',
+  'curl -o .cursor/rules/pytorch.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/pytorch.mdc',
+  '.cursor/rules/pytorch.mdc',
+  'python',
+  ARRAY['pytorch', 'ai-ml', 'huggingface', 'python']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Kafka Event-Driven Architecture Rule',
+  'kafka-event-driven-architecture-rule',
+  'Event sourcing and streaming with Apache Kafka, Schema Registry Avro contracts, and consumer groups.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/kafka.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2810,
+  260,
+  75,
+  '# Kafka Streaming Standards
+- Enforce schema evolution with Confluent Schema Registry.
+- Handle consumer rebalances gracefully with manual offset commit.
+- Implement dead-letter-queues (DLQ) for poisoning message triage.',
+  'Event sourcing and streaming with Apache Kafka, Schema Registry Avro contracts, and consumer groups.',
+  'curl -o .cursor/rules/kafka.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/kafka.mdc',
+  '.cursor/rules/kafka.mdc',
+  'java',
+  ARRAY['kafka', 'streaming', 'events', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Nginx Reverse Proxy & TLS Hardening Rule',
+  'nginx-reverse-proxy-tls-hardening',
+  'High-performance Nginx configuration with TLS 1.3, HSTS, gzip/brotli compression, and rate limiting.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/nginx.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  3120,
+  350,
+  85,
+  '# Nginx Hardening Guidelines
+- Disable obsolete TLS versions; enforce TLSv1.3.
+- Configure limit_req_zone to mitigate HTTP flood attacks.
+- Set strict security headers: HSTS, X-Frame-Options, X-Content-Type-Options.',
+  'High-performance Nginx configuration with TLS 1.3, HSTS, gzip/brotli compression, and rate limiting.',
+  'curl -o .cursor/rules/nginx.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/nginx.mdc',
+  '.cursor/rules/nginx.mdc',
+  'nginx',
+  ARRAY['nginx', 'proxy', 'security', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Modern Bash & Shell Scripting Standards',
+  'modern-bash-shell-scripting-standards',
+  'Defensive Bash scripting with strict mode (set -euo pipefail), trap error handlers, and shellcheck clean code.',
+  'cursor',
+  'rules',
+  'devops',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/bash.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2560,
+  180,
+  60,
+  '# Defensive Shell Standards
+- Always start with set -euo pipefail.
+- Double quote all variable expansions to avoid word splitting.
+- Use [[ ... ]] instead of legacy [ ... ] test brackets.',
+  'Defensive Bash scripting with strict mode (set -euo pipefail), trap error handlers, and shellcheck.',
+  'curl -o .cursor/rules/bash.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/bash.mdc',
+  '.cursor/rules/bash.mdc',
+  'bash',
+  ARRAY['bash', 'shell', 'automation', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'C++20 Clean Systems Programming Rule',
+  'cpp20-clean-systems-programming-rule',
+  'Modern C++20 conventions with Concepts, Ranges, Coroutines, std::format, and zero raw pointers.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/cpp20.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2740,
+  200,
+  70,
+  '# C++20 Clean Code Standards
+- Constrain template parameters using C++20 Concepts.
+- Use std::unique_ptr and std::shared_ptr; never call raw new/delete.
+- Prefer std::span and std::string_view for non-owning memory references.',
+  'Modern C++20 conventions with Concepts, Ranges, Coroutines, std::format, and smart pointers.',
+  'curl -o .cursor/rules/cpp20.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/cpp20.mdc',
+  '.cursor/rules/cpp20.mdc',
+  'cpp',
+  ARRAY['cpp', 'systems', 'cplusplus', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'C# .NET 8 Web API & Minimal Endpoints',
+  'csharp-dotnet-8-web-api-minimal-rule',
+  'High performance ASP.NET Core 8 Minimal APIs, native AOT compilation, and Entity Framework Core.',
+  'cursor',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/dotnet-8.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2940,
+  250,
+  80,
+  '# .NET 8 Web API Standards
+- Use RouteGroupBuilder for modular Minimal API endpoints.
+- Enable Native AOT publishing for instant cold-starts.
+- Use AsNoTracking() on read-only EF Core queries.',
+  'High performance ASP.NET Core 8 Minimal APIs, native AOT compilation, and Entity Framework Core.',
+  'curl -o .cursor/rules/dotnet-8.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/dotnet-8.mdc',
+  '.cursor/rules/dotnet-8.mdc',
+  'csharp',
+  ARRAY['csharp', 'dotnet', 'webapi', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Angular 17 Signals & Standalone Components',
+  'angular-17-signals-standalone-components',
+  'Modern Angular architecture without NgModules, using Signals reactivity, control flow syntax, and defer blocks.',
+  'cursor',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/angular-17.mdc',
+  'https://github.com/PatrickJS/awesome-cursorrules',
+  'PatrickJS',
+  'awesome-cursorrules',
+  2210,
+  170,
+  55,
+  '# Angular 17 Standards
+- Strictly standalone: true components, directives, and pipes.
+- Use @if, @for, @switch built-in control flow syntax.
+- Manage component state using signal() and computed().',
+  'Modern Angular architecture without NgModules, using Signals reactivity and control flow syntax.',
+  'curl -o .cursor/rules/angular-17.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/angular-17.mdc',
+  '.cursor/rules/angular-17.mdc',
+  'typescript',
+  ARRAY['angular', 'signals', 'typescript', 'frontend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -194,20 +1579,41 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  450,
-  '# Postgres MCP Server
-Connects Claude and other LLMs securely to PostgreSQL databases. Features schema inspection, EXPLAIN analysis, and parameterized queries.',
+  6840,
+  720,
+  290,
+  '# PostgreSQL MCP Server
+Connects Claude Desktop and LLM agents directly to PostgreSQL databases.
+Features:
+- Schema discovery and table column introspection
+- Safe read-only SQL query execution
+- EXPLAIN execution plan analysis for query optimization',
   'Connects Claude and other LLMs securely to PostgreSQL databases. Features schema inspection and EXPLAIN analysis.',
-  'npx -y @modelcontextprotocol/server-postgres "postgresql://user:password@localhost:5432/mydb"',
+  'npx -y @modelcontextprotocol/server-postgres "postgresql://user:***@localhost:5432/mydb"',
   'src/postgres/index.ts',
   'typescript',
   ARRAY['mcp', 'postgres', 'database', 'sql']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -227,20 +1633,41 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  380,
+  6840,
+  720,
+  290,
   '# Filesystem MCP Server
-Provides secure, sandboxed file operations for LLM agent hosts like Claude Desktop.',
+Provides secure, sandboxed file operations for LLM agent hosts like Claude Desktop.
+Features:
+- Sandboxed directory access restrictions
+- File read, write, create, and atomic patch operations
+- Fast ripgrep-like content and file name search',
   'Provides secure, sandboxed file operations for LLM agent hosts like Claude Desktop.',
   'npx -y @modelcontextprotocol/server-filesystem /path/to/allowed/dir',
   'src/filesystem/index.ts',
   'typescript',
-  ARRAY['mcp', 'filesystem', 'tools', 'sandboxed']::TEXT[],
+  ARRAY['mcp', 'filesystem', 'workspace', 'tools']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -261,10 +1688,14 @@ INSERT INTO skills (
   'executeautomation',
   'mcp-playwright',
   1820,
-  195,
-  160,
+  170,
+  120,
   '# Playwright MCP Server
-Enables AI agents to interact with web pages, fill forms, run end-to-end tests, and capture screenshots via Playwright.',
+Enables AI agents to interact with web pages, fill forms, run end-to-end tests, and capture screenshots.
+Features:
+- Headless Chromium navigation
+- Selector clicking and form filling
+- Screenshot capture and accessibility tree evaluation',
   'Enables AI agents to interact with web pages, fill forms, run end-to-end tests, and capture screenshots.',
   'npx -y @executeautomation/playwright-mcp-server',
   'index.ts',
@@ -272,8 +1703,25 @@ Enables AI agents to interact with web pages, fill forms, run end-to-end tests, 
   ARRAY['mcp', 'playwright', 'browser', 'automation']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -293,11 +1741,15 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  410,
+  6840,
+  720,
+  290,
   '# GitHub MCP Server
-Allows agent hosts to query repositories, create commits, inspect branches, and open pull requests autonomously.',
+Allows agent hosts to query repositories, create commits, inspect branches, and open pull requests autonomously.
+Features:
+- Branch manipulation and git trees
+- PR review comments and automated issue triage
+- File content reading and multi-file commits',
   'Allows agent hosts to query repositories, create commits, inspect branches, and open pull requests autonomously.',
   'GITHUB_PERSONAL_ACCESS_TOKEN="ghp_xxx" npx -y @modelcontextprotocol/server-github',
   'src/github/index.ts',
@@ -305,389 +1757,25 @@ Allows agent hosts to query repositories, create commits, inspect branches, and 
   ARRAY['mcp', 'github', 'git', 'devops']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Fullstack TDD Autonomous Agent',
-  'fullstack-tdd-autonomous-agent',
-  'Specification for autonomous coding agent following RED-GREEN-REFACTOR with automated regression test execution.',
-  'claude',
-  'skills',
-  'ai-ml',
-  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/fullstack-tdd.md',
-  'https://github.com/agentsmd/agents.md',
-  'agentsmd',
-  'agents.md',
-  5600,
-  430,
-  290,
-  '# Agent Persona: Fullstack TDD Specialist
-- Always write unit tests before touching application code.
-- Verify test failure (RED), implement minimum code (GREEN), then refactor.
-- Never delete tests without justification.',
-  'Always write unit tests before touching application code. Verify test failure (RED), implement code (GREEN), then refactor.',
-  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/fullstack-tdd.md',
-  'AGENTS.md',
-  'markdown',
-  ARRAY['claude', 'tdd', 'testing', 'agent-spec']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Security Code Auditor & Pentest Guard',
-  'security-code-auditor-pentest-guard',
-  'Automated security review skill identifying OWASP Top 10 vulnerabilities, CWE anti-patterns, and timing attacks.',
-  'claude',
-  'skills',
-  'devops',
-  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/security-auditor.md',
-  'https://github.com/agentsmd/agents.md',
-  'agentsmd',
-  'agents.md',
-  4100,
-  310,
-  175,
-  '# Security Auditor
-- Inspect all database queries for SQL injection.
-- Validate proper CSRF and CORS protections.
-- Enforce secure cookie attributes: HttpOnly, Secure, SameSite.',
-  'Inspect all database queries for SQL injection. Validate CSRF/CORS protections. Enforce secure cookie attributes.',
-  'curl -o CLAUDE.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/security-auditor.md',
-  'CLAUDE.md',
-  'markdown',
-  ARRAY['claude', 'security', 'owasp', 'audit']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Cloud Run & Dockerfile Deployer Skill',
-  'cloud-run-dockerfile-deployer-skill',
-  'Agent workflow for optimizing multi-stage Dockerfiles and zero-downtime deployment to Google Cloud Run.',
-  'gemini',
-  'skills',
-  'devops',
-  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-run/SKILL.md',
-  'https://github.com/google-gemini/gemini-skills',
-  'google-gemini',
-  'gemini-skills',
-  2340,
-  210,
-  90,
-  '# Cloud Run Deployment Skill
-- Multi-stage build with unprivileged runner user.
-- Environment parameter mapping via GCP Secret Manager.
-- Automatic readiness probing on /readyz.',
-  'Multi-stage build with unprivileged runner user. Environment parameter mapping via GCP Secret Manager.',
-  'mkdir -p .gemini/skills && curl -o .gemini/skills/SKILL.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-run/SKILL.md',
-  '.gemini/skills/SKILL.md',
-  'dockerfile',
-  ARRAY['gemini', 'docker', 'cloudrun', 'devops']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Gemini Multimodal Data Extraction Skill',
-  'gemini-multimodal-data-extraction-skill',
-  'Structured JSON schema extraction from invoices, receipts, and complex PDF tables using Gemini 1.5 Pro.',
-  'gemini',
-  'skills',
-  'ai-ml',
-  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/data-extraction/SKILL.md',
-  'https://github.com/google-gemini/gemini-skills',
-  'google-gemini',
-  'gemini-skills',
-  1890,
-  140,
-  80,
-  '# Multimodal Extraction
-- Define Pydantic output schema.
-- Utilize temperature=0.0 for deterministic serialization.
-- Validate returned fields with retry fallback.',
-  'Define Pydantic output schema. Utilize temperature=0.0 for deterministic serialization.',
-  'mkdir -p .gemini/skills && curl -o .gemini/skills/extraction.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/data-extraction/SKILL.md',
-  '.gemini/skills/extraction.md',
-  'python',
-  ARRAY['gemini', 'multimodal', 'pdf', 'extraction']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'TypeScript Strict & Functional Core',
-  'typescript-strict-functional-core',
-  'GitHub Copilot instructions enforcing immutable data flow, Discriminated Unions, and zero ''any'' casts.',
-  'copilot',
-  'rules',
-  'frontend',
-  'https://raw.githubusercontent.com/github/copilot-instructions/main/typescript.md',
-  'https://github.com/github/copilot-instructions',
-  'github',
-  'copilot-instructions',
-  6700,
-  520,
-  210,
-  '# Copilot Instructions: TypeScript
-- Strict null checks enabled; never use ''any'' or non-null assertion ''!''.
-- Prefer Discriminated Unions over type inheritance.
-- Use readonly arrays and properties for immutability.',
-  'Strict null checks enabled; never use any or non-null assertion !. Prefer Discriminated Unions.',
-  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/typescript.md',
-  '.github/copilot-instructions.md',
-  'typescript',
-  ARRAY['copilot', 'typescript', 'functional', 'strict']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'ReAct Reasoning Framework Prompt',
-  'react-reasoning-framework-prompt',
-  'Standardized Thought-Action-Observation loop prompt template for complex multi-step tool use.',
-  'generic',
-  'frameworks',
-  'ai-ml',
-  'https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/react-loop.md',
-  'https://github.com/prompt-engineering/awesome-prompts',
-  'prompt-engineering',
-  'awesome-prompts',
-  8900,
-  910,
-  310,
-  '# ReAct Framework Prompt
-Solve problems by alternating between Thought, Action, and Observation until the final deliverable is verified.',
-  'Solve problems by alternating between Thought, Action, and Observation until final deliverable is verified.',
-  'curl -o prompts/react-loop.md https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/react-loop.md',
-  'prompts/react-loop.md',
-  'markdown',
-  ARRAY['react-loop', 'prompts', 'frameworks', 'agents']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'SQLite Schema & Migration Tools Rule',
-  'sqlite-schema-migration-tools-rule',
-  'Best practices for embedded SQLite database access, WAL mode, pragmas, and schema evolution.',
-  'cursor',
-  'rules',
-  'backend',
-  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sqlite.mdc',
-  'https://github.com/PatrickJS/awesome-cursorrules',
-  'PatrickJS',
-  'awesome-cursorrules',
-  2100,
-  130,
-  65,
-  '# SQLite Guidelines
-- Always enable PRAGMA journal_mode=WAL and PRAGMA busy_timeout=5000.
-- Handle idempotent columns carefully with ALTER TABLE before CREATE INDEX.
-- Store timestamps in UTC ISO8601 strings.',
-  'Always enable PRAGMA journal_mode=WAL. Store timestamps in UTC ISO8601 strings.',
-  'curl -o .cursor/rules/sqlite.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/sqlite.mdc',
-  '.cursor/rules/sqlite.mdc',
-  'sql',
-  ARRAY['sqlite', 'sql', 'database', 'cursor']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Claude Code Reviewer & Quality Gate',
-  'claude-code-reviewer-quality-gate',
-  'Pre-commit and pull request automated code review bot configured with static analysis checks.',
-  'claude',
-  'tools',
-  'devops',
-  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/code-reviewer.md',
-  'https://github.com/agentsmd/agents.md',
-  'agentsmd',
-  'agents.md',
-  3400,
-  260,
-  130,
-  '# Code Reviewer
-- Review changes for cyclomatic complexity, missing test coverage, and naming consistency.
-- Provide actionable inline patch suggestions.',
-  'Review changes for cyclomatic complexity, test coverage, and naming consistency. Provide actionable patch suggestions.',
-  'curl -o .claude/review.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/code-reviewer.md',
-  '.claude/review.md',
-  'markdown',
-  ARRAY['claude', 'code-review', 'quality', 'tools']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Vue 3 & Pinia Composition API Rule',
-  'vue-3-pinia-composition-api-rule',
-  'Composition API standards, TypeScript props, Pinia state stores, and Vue Router guard patterns.',
-  'cursor',
-  'rules',
-  'frontend',
-  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/vue3.mdc',
-  'https://github.com/PatrickJS/awesome-cursorrules',
-  'PatrickJS',
-  'awesome-cursorrules',
-  1820,
-  110,
-  45,
-  '# Vue 3 Rules
-- Strictly use <script setup lang="ts">.
-- Use defineProps and defineEmits with TypeScript types.
-- Keep Pinia stores modular and strongly typed.',
-  'Strictly use script setup lang=ts. Use defineProps and defineEmits with TypeScript types. Keep Pinia stores modular.',
-  'curl -o .cursor/rules/vue3.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/vue3.mdc',
-  '.cursor/rules/vue3.mdc',
-  'vue',
-  ARRAY['vue', 'pinia', 'typescript', 'frontend']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Django 5 & Ninja Async API Rule',
-  'django-5-ninja-async-api-rule',
-  'Clean Django 5 patterns using Django-Ninja async router, Pydantic schemas, and optimized QuerySets.',
-  'cursor',
-  'rules',
-  'backend',
-  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/django.mdc',
-  'https://github.com/PatrickJS/awesome-cursorrules',
-  'PatrickJS',
-  'awesome-cursorrules',
-  2150,
-  140,
-  55,
-  '# Django Guidelines
-- Use select_related and prefetch_related to eliminate N+1 queries.
-- Use Django Ninja for OpenAPI-compliant async endpoints.',
-  'Use select_related and prefetch_related to eliminate N+1 queries. Use Django Ninja for OpenAPI endpoints.',
-  'curl -o .cursor/rules/django.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/django.mdc',
-  '.cursor/rules/django.mdc',
-  'python',
-  ARRAY['django', 'python', 'backend', 'api']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
-  updated_at = NOW();
-
-INSERT INTO skills (
-  name, slug, description, platform, category, subcategory,
-  source_url, repo_url, repo_owner, repo_name,
-  stars_count, forks_count, stars_velocity,
-  content_raw, content_preview, install_snippet, file_path, language, tags,
-  last_synced_at
-) VALUES (
-  'Docker & Multi-Stage Production Containers',
-  'docker-multi-stage-production-containers',
-  'Minimal, non-root, alpine and scratch base images for secure container deployments.',
-  'cursor',
-  'rules',
-  'devops',
-  'https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/docker.mdc',
-  'https://github.com/PatrickJS/awesome-cursorrules',
-  'PatrickJS',
-  'awesome-cursorrules',
-  3900,
-  320,
-  120,
-  '# Docker Standards
-- Run as unprivileged non-root user.
-- Use builder stages to isolate compile-time dependencies.
-- Ensure .dockerignore excludes node_modules, git, and sensitive envs.',
-  'Run as unprivileged non-root user. Use builder stages to isolate dependencies. Ensure .dockerignore excludes secret files.',
-  'curl -o .cursor/rules/docker.mdc https://raw.githubusercontent.com/PatrickJS/awesome-cursorrules/main/rules/docker.mdc',
-  '.cursor/rules/docker.mdc',
-  'dockerfile',
-  ARRAY['docker', 'devops', 'containers', 'security']::TEXT[],
-  NOW()
-) ON CONFLICT (slug) DO UPDATE SET
-  stars_count = EXCLUDED.stars_count,
-  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -707,20 +1795,41 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  490,
+  6840,
+  720,
+  290,
   '# Brave Search MCP Server
-Enables agent hosts to perform live web queries, fetch news, and verify facts with fresh web index citations.',
+Enables agent hosts to perform live web queries, fetch news, and verify facts with fresh citations.
+Features:
+- Web search with title, URL, snippet
+- Local points of interest search
+- Zero tracking and privacy preservation',
   'Enables agent hosts to perform live web queries, fetch news, and verify facts with fresh citations.',
   'BRAVE_API_KEY="BSA-xxx" npx -y @modelcontextprotocol/server-brave-search',
   'src/brave-search/index.ts',
   'typescript',
-  ARRAY['mcp', 'search', 'web', 'brave']::TEXT[],
+  ARRAY['mcp', 'search', 'web', 'tools']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -740,20 +1849,41 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  340,
+  6840,
+  720,
+  290,
   '# Slack MCP Server
-Integrates AI workflows directly into Slack channels for automated team notifications and conversational triage.',
+Integrates AI workflows directly into Slack channels for automated team notifications.
+Features:
+- Channel message posting and thread replies
+- Channel message history search
+- User profile lookups and notifications',
   'Integrates AI workflows directly into Slack channels for automated team notifications.',
   'SLACK_BOT_TOKEN="xoxb-xxx" npx -y @modelcontextprotocol/server-slack',
   'src/slack/index.ts',
   'typescript',
-  ARRAY['mcp', 'slack', 'collaboration', 'chat']::TEXT[],
+  ARRAY['mcp', 'slack', 'chat', 'notifications']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -773,11 +1903,15 @@ INSERT INTO skills (
   'https://github.com/modelcontextprotocol/servers',
   'modelcontextprotocol',
   'servers',
-  12500,
-  1420,
-  310,
+  6840,
+  720,
+  290,
   '# Git MCP Server
-Execute git operations locally with strict sandbox enforcement and detailed unified diff output.',
+Execute git operations locally with strict sandbox enforcement and detailed unified diff output.
+Features:
+- Status check, branch checkout, commit creation
+- Unified git diff inspection
+- Commit log history traversal',
   'Execute git operations locally with strict sandbox enforcement and detailed unified diff output.',
   'npx -y @modelcontextprotocol/server-git --repository /path/to/repo',
   'src/git/index.ts',
@@ -785,8 +1919,883 @@ Execute git operations locally with strict sandbox enforcement and detailed unif
   ARRAY['mcp', 'git', 'version-control', 'devops']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'SQLite Local Database Context MCP Server',
+  'sqlite-local-database-mcp-server',
+  'Local embedded SQLite database inspection, schema analysis, and query execution engine for LLMs.',
+  'mcp',
+  'mcp_servers',
+  'backend',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# SQLite MCP Server
+Provides SQLite database query capabilities and schema inspection for AI assistants.
+Features:
+- Query execution with result sets
+- Table and index introspection
+- Safe parameter binding',
+  'Local embedded SQLite database inspection, schema analysis, and query execution engine for LLMs.',
+  'npx -y @modelcontextprotocol/server-sqlite --db-path /path/to/database.db',
+  'src/sqlite/index.ts',
+  'typescript',
+  ARRAY['mcp', 'sqlite', 'database', 'sql']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Memory & Knowledge Graph MCP Server',
+  'memory-knowledge-graph-mcp-server',
+  'Persistent graph-based memory enabling LLMs to store entities, relationships, and context across sessions.',
+  'mcp',
+  'mcp_servers',
+  'ai-ml',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/memory',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Memory MCP Server
+Persistent knowledge graph memory system for AI agents.
+Features:
+- Entity and relationship extraction
+- Cross-session memory recall
+- Graph traversal and semantic search',
+  'Persistent graph-based memory enabling LLMs to store entities, relationships, and context across sessions.',
+  'npx -y @modelcontextprotocol/server-memory',
+  'src/memory/index.ts',
+  'typescript',
+  ARRAY['mcp', 'memory', 'knowledge-graph', 'ai-ml']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Fetch Web Page & Markdown Parser MCP Server',
+  'fetch-web-page-markdown-mcp-server',
+  'Fast web scraping and HTML-to-markdown conversion server with readable text extraction.',
+  'mcp',
+  'mcp_servers',
+  'tools',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/fetch',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Fetch MCP Server
+Lightweight web page fetcher that converts HTML pages directly to clean Markdown.
+Features:
+- Readability article extraction
+- Stripping scripts, ads, and navigation clutter
+- HTTP redirect handling and content negotiation',
+  'Fast web scraping and HTML-to-markdown conversion server with readable text extraction.',
+  'npx -y @modelcontextprotocol/server-fetch',
+  'src/fetch/index.ts',
+  'typescript',
+  ARRAY['mcp', 'fetch', 'scraping', 'markdown']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Puppeteer Headless Browser MCP Server',
+  'puppeteer-headless-browser-mcp-server',
+  'Chrome automation server using Puppeteer for PDF export, page rendering, and UI testing.',
+  'mcp',
+  'mcp_servers',
+  'tools',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Puppeteer MCP Server
+Browser control using Puppeteer for DOM automation and rendering.
+Features:
+- Page navigation and JavaScript evaluation
+- Element screenshotting and clicking
+- PDF generation from web content',
+  'Chrome automation server using Puppeteer for PDF export, page rendering, and UI testing.',
+  'npx -y @modelcontextprotocol/server-puppeteer',
+  'src/puppeteer/index.ts',
+  'typescript',
+  ARRAY['mcp', 'puppeteer', 'browser', 'automation']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Google Drive & Docs Workspace MCP Server',
+  'google-drive-workspace-mcp-server',
+  'Access Google Drive documents, search spreadsheets, and export Google Docs contents via MCP.',
+  'mcp',
+  'mcp_servers',
+  'tools',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Google Drive MCP Server
+Connects Claude and other LLMs to Google Workspace.
+Features:
+- File search across user Drive and shared drives
+- Google Docs and Sheets text extraction
+- Read-only permission guardrails',
+  'Access Google Drive documents, search spreadsheets, and export Google Docs contents via MCP.',
+  'npx -y @modelcontextprotocol/server-gdrive',
+  'src/gdrive/index.ts',
+  'typescript',
+  ARRAY['mcp', 'google-drive', 'docs', 'workspace']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Docker Container Management MCP Server',
+  'docker-container-management-mcp-server',
+  'Inspect containers, stream Docker logs, manage networks, and trigger image builds over MCP.',
+  'mcp',
+  'mcp_servers',
+  'devops',
+  'https://github.com/ckreiling/mcp-server-docker',
+  'https://github.com/ckreiling/mcp-server-docker',
+  'ckreiling',
+  'mcp-server-docker',
+  1450,
+  110,
+  90,
+  '# Docker MCP Server
+Control local Docker daemon safely from agent host.
+Features:
+- Container inspection and status checking
+- Live log tailing
+- Safe restart and stop actions',
+  'Inspect containers, stream Docker logs, manage networks, and trigger image builds over MCP.',
+  'npx -y mcp-server-docker',
+  'dist/index.js',
+  'typescript',
+  ARRAY['mcp', 'docker', 'containers', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Sentry Error Tracking & Diagnostic MCP Server',
+  'sentry-error-tracking-mcp-server',
+  'Query Sentry issue alerts, stack traces, release regressions, and breadcrumbs for fast debugging.',
+  'mcp',
+  'mcp_servers',
+  'devops',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/sentry',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Sentry MCP Server
+Enables agent hosts to inspect live production crashes and stack traces.
+Features:
+- Issue search by project and release
+- Full stack trace and breadcrumbs retrieval
+- Issue resolution status updating',
+  'Query Sentry issue alerts, stack traces, release regressions, and breadcrumbs for fast debugging.',
+  'SENTRY_AUTH_TOKEN="sntrys_xxx" npx -y @modelcontextprotocol/server-sentry',
+  'src/sentry/index.ts',
+  'typescript',
+  ARRAY['mcp', 'sentry', 'monitoring', 'debugging']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'AWS CloudWatch & Lambda Diagnostics MCP Server',
+  'aws-cloudwatch-lambda-mcp-server',
+  'Stream AWS CloudWatch logs, query CloudWatch metrics, and inspect Lambda function configurations.',
+  'mcp',
+  'mcp_servers',
+  'devops',
+  'https://github.com/awslabs/mcp-server-aws',
+  'https://github.com/awslabs/mcp-server-aws',
+  'awslabs',
+  'mcp-server-aws',
+  2100,
+  180,
+  130,
+  '# AWS MCP Server
+Diagnostic access to AWS CloudWatch, Lambda, and DynamoDB for autonomous agents.
+Features:
+- CloudWatch Insights log query execution
+- Metric statistics lookup
+- Lambda configuration and error log auditing',
+  'Stream AWS CloudWatch logs, query CloudWatch metrics, and inspect Lambda function configurations.',
+  'npx -y @awslabs/mcp-server-aws',
+  'index.ts',
+  'typescript',
+  ARRAY['mcp', 'aws', 'cloudwatch', 'lambda']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Elasticsearch & OpenSearch Vector MCP Server',
+  'elasticsearch-vector-mcp-server',
+  'Semantic vector search and full-text BM25 querying across Elasticsearch and OpenSearch clusters.',
+  'mcp',
+  'mcp_servers',
+  'backend',
+  'https://github.com/elastic/mcp-server-elasticsearch',
+  'https://github.com/elastic/mcp-server-elasticsearch',
+  'elastic',
+  'mcp-server-elasticsearch',
+  1340,
+  95,
+  80,
+  '# Elasticsearch MCP Server
+Query Elasticsearch indices using BM25 full-text and kNN vector search.
+Features:
+- Index mapping inspection
+- Hybrid search execution
+- Aggregation and facet queries',
+  'Semantic vector search and full-text BM25 querying across Elasticsearch and OpenSearch clusters.',
+  'npx -y @elastic/mcp-server-elasticsearch',
+  'src/index.ts',
+  'typescript',
+  ARRAY['mcp', 'elasticsearch', 'search', 'database']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Redis Key-Value & Stream Cache MCP Server',
+  'redis-stream-cache-mcp-server',
+  'Inspect Redis keys, read stream messages, monitor cache hits, and execute diagnostic Redis commands.',
+  'mcp',
+  'mcp_servers',
+  'backend',
+  'https://github.com/modelcontextprotocol/servers/tree/main/src/redis',
+  'https://github.com/modelcontextprotocol/servers',
+  'modelcontextprotocol',
+  'servers',
+  6840,
+  720,
+  290,
+  '# Redis MCP Server
+Direct Redis cache inspection and monitoring for AI coding assistants.
+Features:
+- Key scanning with pattern filters
+- String, Hash, and Set inspection
+- Memory usage and TTL queries',
+  'Inspect Redis keys, read stream messages, monitor cache hits, and execute diagnostic Redis commands.',
+  'REDIS_URL="redis://localhost:6379" npx -y @modelcontextprotocol/server-redis',
+  'src/redis/index.ts',
+  'typescript',
+  ARRAY['mcp', 'redis', 'cache', 'backend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Linear Project & Issue Management MCP Server',
+  'linear-issue-management-mcp-server',
+  'Create, assign, update, and search software development issues and project roadmaps in Linear.',
+  'mcp',
+  'mcp_servers',
+  'tools',
+  'https://github.com/jerhadf/linear-mcp-server',
+  'https://github.com/jerhadf/linear-mcp-server',
+  'jerhadf',
+  'linear-mcp-server',
+  1620,
+  140,
+  110,
+  '# Linear MCP Server
+Connects AI agents to Linear for project management.
+Features:
+- Issue search and status transitions
+- Create tasks with parent-child relationships
+- Project milestone and cycle inspection',
+  'Create, assign, update, and search software development issues and project roadmaps in Linear.',
+  'LINEAR_API_KEY="lin_api_xxx" npx -y linear-mcp-server',
+  'dist/index.js',
+  'typescript',
+  ARRAY['mcp', 'linear', 'project-management', 'tools']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Atlassian Confluence Documentation MCP Server',
+  'confluence-documentation-mcp-server',
+  'Search corporate knowledge bases, read wiki spaces, and extract architectural documentation in Confluence.',
+  'mcp',
+  'mcp_servers',
+  'tools',
+  'https://github.com/soopermin/mcp-atlassian',
+  'https://github.com/soopermin/mcp-atlassian',
+  'soopermin',
+  'mcp-atlassian',
+  1280,
+  115,
+  75,
+  '# Confluence MCP Server
+Allows agent hosts to query enterprise Confluence wiki spaces.
+Features:
+- CQL search syntax support
+- Page body HTML-to-text extraction
+- Space hierarchy navigation',
+  'Search corporate knowledge bases, read wiki spaces, and extract architectural documentation in Confluence.',
+  'npx -y mcp-atlassian-confluence',
+  'index.ts',
+  'typescript',
+  ARRAY['mcp', 'confluence', 'documentation', 'enterprise']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'ClickHouse Realtime Analytics MCP Server',
+  'clickhouse-realtime-analytics-mcp-server',
+  'OLAP analytics engine interface for ClickHouse with column compression, system table queries, and aggregation.',
+  'mcp',
+  'mcp_servers',
+  'backend',
+  'https://github.com/ClickHouse/mcp-server-clickhouse',
+  'https://github.com/ClickHouse/mcp-server-clickhouse',
+  'ClickHouse',
+  'mcp-server-clickhouse',
+  1520,
+  130,
+  100,
+  '# ClickHouse MCP Server
+Fast analytical queries against ClickHouse clusters.
+Features:
+- Schema and partition layout inspection
+- High-speed analytical query execution
+- System table performance profiling',
+  'OLAP analytics engine interface for ClickHouse with column compression, system table queries, and aggregation.',
+  'npx -y @clickhouse/mcp-server',
+  'src/index.ts',
+  'typescript',
+  ARRAY['mcp', 'clickhouse', 'analytics', 'sql']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Fullstack TDD Autonomous Agent',
+  'fullstack-tdd-autonomous-agent',
+  'Specification for autonomous coding agent following RED-GREEN-REFACTOR with automated regression test execution.',
+  'claude',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/fullstack-tdd.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# AGENTS.md Fullstack TDD Agent
+Always write unit tests before touching application code.
+Verify test failure (RED), implement code (GREEN), then refactor.
+Never proceed to new features without 100% test pass rate.',
+  'Always write unit tests before touching application code. Verify test failure (RED), implement code (GREEN), then refactor.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/fullstack-tdd.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'tdd', 'testing', 'agents']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Security Code Auditor & Pentest Guard',
+  'security-code-auditor-pentest-guard',
+  'Automated security review skill identifying OWASP Top 10 vulnerabilities, CWE anti-patterns, and timing attacks.',
+  'claude',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/security-auditor.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# CLAUDE.md Security Auditor
+Inspect all database queries for SQL injection.
+Validate CSRF/CORS protections.
+Enforce secure cookie attributes: HttpOnly, Secure, SameSite=Strict.',
+  'Inspect all database queries for SQL injection. Validate CSRF/CORS protections. Enforce secure cookie attributes.',
+  'curl -o CLAUDE.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/security-auditor.md',
+  'CLAUDE.md',
+  'markdown',
+  ARRAY['claude', 'security', 'owasp', 'auditing']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Claude Code Reviewer & Quality Gate',
+  'claude-code-reviewer-quality-gate',
+  'Pre-commit and pull request automated code review bot configured with static analysis checks.',
+  'claude',
+  'tools',
+  'devops',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/code-reviewer.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Code Reviewer Agent
+Review changes for cyclomatic complexity, test coverage, and naming consistency.
+Provide actionable patch suggestions.
+Ensure zero new warnings from linters.',
+  'Review changes for cyclomatic complexity, test coverage, and naming consistency. Provide actionable patch suggestions.',
+  'curl -o .claude/review.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/code-reviewer.md',
+  'CLAUDE.md',
+  'markdown',
+  ARRAY['claude', 'code-review', 'quality-gate', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -806,22 +2815,39 @@ INSERT INTO skills (
   'https://github.com/agentsmd/agents.md',
   'agentsmd',
   'agents.md',
-  2750,
-  180,
-  95,
-  '# Tech Writer Agent
-- Document every public endpoint with request/response JSON samples.
-- Keep explanations concise, bulleted, and actionable.
-- Use Mermaid.js or ASCII diagrams for architecture workflows.',
+  5120,
+  420,
+  190,
+  '# Technical Writer Agent
+Document every public endpoint with request/response JSON samples.
+Keep explanations concise, bulleted, and actionable.
+Include Mermaid.js sequence diagrams for async flows.',
   'Document every public endpoint with request/response JSON samples. Keep explanations concise, bulleted, and actionable.',
   'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/tech-writer.md',
   'AGENTS.md',
   'markdown',
-  ARRAY['claude', 'docs', 'writing', 'documentation']::TEXT[],
+  ARRAY['claude', 'documentation', 'technical-writing', 'prompts']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -831,30 +2857,673 @@ INSERT INTO skills (
   content_raw, content_preview, install_snippet, file_path, language, tags,
   last_synced_at
 ) VALUES (
-  'System Architecture & Threat Modeling Prompt',
-  'system-architecture-threat-modeling-prompt',
-  'STRIDE threat modeling and architectural validation prompt for mission-critical cloud deployments.',
-  'generic',
-  'prompts',
-  'devops',
-  'https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/threat-modeling.md',
-  'https://github.com/prompt-engineering/awesome-prompts',
-  'prompt-engineering',
-  'awesome-prompts',
-  5100,
+  'Database Migration & Schema Architect AGENTS.md',
+  'database-migration-schema-architect-claude',
+  'Zero-downtime database migration guidelines, foreign key lock safety, and index optimization for PostgreSQL.',
+  'claude',
+  'skills',
+  'backend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/db-architect.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
   420,
-  150,
-  '# Threat Modeling Agent
-Perform STRIDE evaluation on each trust boundary: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege.',
-  'Perform STRIDE evaluation on each trust boundary: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation.',
-  'curl -o prompts/threat-modeling.md https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/threat-modeling.md',
-  'prompts/threat-modeling.md',
+  190,
+  '# DB Migration Architect
+- Never run ALTER TABLE ADD COLUMN with default values on active high-volume tables.
+- Always use CREATE INDEX CONCURRENTLY.
+- Implement backward-compatible database schema changes across two deployment phases.',
+  'Zero-downtime database migration guidelines, foreign key lock safety, and index optimization for PostgreSQL.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/db-architect.md',
+  'AGENTS.md',
   'markdown',
-  ARRAY['prompts', 'security', 'stride', 'architecture']::TEXT[],
+  ARRAY['claude', 'database', 'postgres', 'migrations']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Site Reliability Engineer & Incident Responder',
+  'sre-incident-responder-claude',
+  'Post-mortem investigation, log correlation, SLO budgeting, and alert triage automation.',
+  'claude',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/sre-incident.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# SRE Incident Responder Agent
+- Isolate failure radius before rolling back releases.
+- Query Prometheus alerts and trace error rates.
+- Generate structured incident timelines with 5-whys root cause analysis.',
+  'Post-mortem investigation, log correlation, SLO budgeting, and alert triage automation.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/sre-incident.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'sre', 'devops', 'incident-response']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Frontend Performance & Core Web Vitals Auditor',
+  'web-vitals-performance-auditor-claude',
+  'Lighthouse audit automation targeting LCP under 2.5s, zero CLS, and sub-200ms INP responsiveness.',
+  'claude',
+  'skills',
+  'frontend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/web-vitals.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Web Vitals Auditor
+- Enforce image dimensions to eliminate Cumulative Layout Shift (CLS).
+- Preload critical hero images and font subsets.
+- Defer non-critical third-party scripts.',
+  'Lighthouse audit automation targeting LCP under 2.5s, zero CLS, and sub-200ms INP responsiveness.',
+  'curl -o CLAUDE.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/web-vitals.md',
+  'CLAUDE.md',
+  'markdown',
+  ARRAY['claude', 'performance', 'web-vitals', 'frontend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'WCAG 2.2 Accessibility Compliance Guardian',
+  'accessibility-wcag-compliance-claude',
+  'Enforce ARIA standards, keyboard navigation, focus trap safety, and 4.5:1 color contrast ratios.',
+  'claude',
+  'skills',
+  'frontend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/a11y-guardian.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Accessibility Guardian Agent
+- Validate axe-core rules across all interactive components.
+- Ensure visible focus rings on interactive elements.
+- Audit semantic HTML tags: nav, main, aside, header.',
+  'Enforce ARIA standards, keyboard navigation, focus trap safety, and 4.5:1 color contrast ratios.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/a11y-guardian.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'accessibility', 'a11y', 'wcag']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'REST & OpenAPI Contract Architect AGENTS.md',
+  'rest-openapi-contract-architect-claude',
+  'Design spec-first OpenAPI 3.1 contracts with semantic versioning, RFC 7807 problem details, and idempotency keys.',
+  'claude',
+  'skills',
+  'backend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/openapi-architect.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# OpenAPI Contract Architect
+- Format error responses according to RFC 7807 Problem Details.
+- Use Idempotency-Key headers for unsafe POST operations.
+- Document schemas with strict enum constraints and regex patterns.',
+  'Design spec-first OpenAPI 3.1 contracts with semantic versioning and RFC 7807 problem details.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/openapi-architect.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'openapi', 'rest', 'api-design']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Flutter Mobile Cross-Platform Specialist',
+  'flutter-cross-platform-specialist-claude',
+  'Clean Flutter architecture with BLoC state management, Freezed models, and Golden UI widget tests.',
+  'claude',
+  'skills',
+  'frontend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/flutter-bloc.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Flutter Specialist Agent
+- Separate UI widgets from business logic via flutter_bloc.
+- Use Freezed for immutable state unions.
+- Verify widget rendering across pixel densities with Golden tests.',
+  'Clean Flutter architecture with BLoC state management, Freezed models, and Golden UI widget tests.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/flutter-bloc.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'flutter', 'dart', 'mobile']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'End-to-End Test Automation Specialist',
+  'e2e-test-automation-specialist-claude',
+  'Robust Cypress and Playwright test suites using Page Object Model and network request interception.',
+  'claude',
+  'skills',
+  'tools',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/e2e-automation.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# E2E Test Automation Agent
+- Rely on data-testid or ARIA roles rather than fragile CSS classes.
+- Mock third-party payment gateways and OAuth providers in test environments.
+- Record trace files and video artifacts on test failures.',
+  'Robust Cypress and Playwright test suites using Page Object Model and network request interception.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/e2e-automation.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'playwright', 'cypress', 'e2e', 'testing']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Chaos Engineering & Resilience Tester',
+  'chaos-engineering-resilience-claude',
+  'Inject network latency, simulate pod crashes, and test circuit breaker timeouts to verify system stability.',
+  'claude',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/chaos-tester.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Chaos Engineering Agent
+- Test timeout fallbacks when upstream microservices drop 50% packets.
+- Verify circuit breaker trips within 5 consecutive 5xx errors.
+- Ensure graceful degradation to read-only replica databases.',
+  'Inject network latency, simulate pod crashes, and test circuit breaker timeouts to verify system stability.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/chaos-tester.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'chaos-engineering', 'resilience', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'MLOps Training Pipeline & Evaluation Guard',
+  'mlops-training-pipeline-eval-claude',
+  'Manage experiment tracking with MLflow, data versioning with DVC, and model registry governance.',
+  'claude',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/mlops-pipeline.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# MLOps Pipeline Agent
+- Log hyperparameters, evaluation loss, and ROC curves to MLflow.
+- Prevent model deployment if benchmark metrics drop below baseline.
+- Ensure dataset lineage tracking with DVC commits.',
+  'Manage experiment tracking with MLflow, data versioning with DVC, and model registry governance.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/mlops-pipeline.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'mlops', 'ai-ml', 'pipelines']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Monorepo Turborepo & Nx Dependency Orchestrator',
+  'monorepo-turborepo-orchestrator-claude',
+  'High-efficiency monorepo caching, boundary enforcement, package publishing, and targeted task runs.',
+  'claude',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/monorepo-orchestrator.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Monorepo Orchestrator Agent
+- Configure turbo.json with explicit inputs, outputs, and dependsOn pipelines.
+- Enforce module boundary rules to prevent circular package imports.
+- Enable remote caching in CI/CD environments.',
+  'High-efficiency monorepo caching, boundary enforcement, package publishing, and targeted task runs.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/monorepo-orchestrator.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'monorepo', 'turborepo', 'nx']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Design System & UI Component Foundry AGENTS.md',
+  'design-system-component-foundry-claude',
+  'Atomic design system creation using Tailwind tokens, Radix UI primitives, and Storybook documentation.',
+  'claude',
+  'skills',
+  'frontend',
+  'https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/design-system.md',
+  'https://github.com/agentsmd/agents.md',
+  'agentsmd',
+  'agents.md',
+  5120,
+  420,
+  190,
+  '# Design System Foundry
+- Build unstyled, accessible primitives using Radix UI or React Aria.
+- Expose theme colors via CSS custom properties and Tailwind tokens.
+- Export every variant with comprehensive Storybook interaction tests.',
+  'Atomic design system creation using Tailwind tokens, Radix UI primitives, and Storybook documentation.',
+  'curl -o AGENTS.md https://raw.githubusercontent.com/agentsmd/agents.md/main/examples/design-system.md',
+  'AGENTS.md',
+  'markdown',
+  ARRAY['claude', 'design-system', 'storybook', 'ui']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Cloud Run & Dockerfile Deployer Skill',
+  'cloud-run-dockerfile-deployer-skill',
+  'Agent workflow for optimizing multi-stage Dockerfiles and zero-downtime deployment to Google Cloud Run.',
+  'gemini',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-run/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Cloud Run Deployer Skill
+Multi-stage build with unprivileged runner user.
+Environment parameter mapping via GCP Secret Manager.
+Configure minimum instances to avoid cold-start delays.',
+  'Multi-stage build with unprivileged runner user. Environment parameter mapping via GCP Secret Manager.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/SKILL.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-run/SKILL.md',
+  '.gemini/cloud-run/SKILL.md',
+  'dockerfile',
+  ARRAY['gemini', 'cloud-run', 'gcp', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Gemini Multimodal Data Extraction Skill',
+  'gemini-multimodal-data-extraction-skill',
+  'Structured JSON schema extraction from invoices, receipts, and complex PDF tables using Gemini 1.5 Pro.',
+  'gemini',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/data-extraction/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Multimodal Data Extraction Skill
+Define Pydantic output schema for structured responses.
+Utilize temperature=0.0 for deterministic serialization.
+Pass image bytes alongside schema descriptions for table parsing.',
+  'Define Pydantic output schema. Utilize temperature=0.0 for deterministic serialization.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/extraction.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/data-extraction/SKILL.md',
+  '.gemini/data-extraction/SKILL.md',
+  'python',
+  ARRAY['gemini', 'multimodal', 'data-extraction', 'ai-ml']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -874,22 +3543,715 @@ INSERT INTO skills (
   'https://github.com/google-gemini/gemini-skills',
   'google-gemini',
   'gemini-skills',
-  1640,
-  115,
-  60,
-  '# BigQuery Optimizer
-- Avoid SELECT *; project only needed columns.
-- Enforce partition filter requirements.
-- Use approximate aggregation functions (APPROX_COUNT_DISTINCT) for large datasets.',
+  4230,
+  380,
+  160,
+  '# BigQuery Optimization Skill
+Avoid SELECT *; project only needed columns.
+Enforce partition filter requirements to avoid full table scans.
+Use APPROX_COUNT_DISTINCT instead of COUNT(DISTINCT) for large datasets.',
   'Avoid SELECT *; project only needed columns. Enforce partition filter requirements. Use approximate aggregation.',
   'mkdir -p .gemini/skills && curl -o .gemini/skills/bigquery.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/bigquery/SKILL.md',
-  '.gemini/skills/bigquery.md',
+  '.gemini/bigquery/SKILL.md',
   'sql',
-  ARRAY['gemini', 'bigquery', 'sql', 'data']::TEXT[],
+  ARRAY['gemini', 'bigquery', 'sql', 'analytics']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Vertex AI Model Tuning & Evaluation Skill',
+  'vertex-ai-model-tuning-skill',
+  'Supervised fine-tuning and LoRA parameter-efficient adaptation on Google Vertex AI with evaluation metrics.',
+  'gemini',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/vertex-tuning/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Vertex AI Tuning Skill
+Prepare JSONL datasets with prompt and completion pairs.
+Configure learning rate decay and evaluation epochs.
+Deploy tuned model artifacts directly to Vertex AI Endpoints.',
+  'Supervised fine-tuning and LoRA parameter-efficient adaptation on Google Vertex AI with evaluation metrics.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/vertex-tuning.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/vertex-tuning/SKILL.md',
+  '.gemini/vertex-tuning/SKILL.md',
+  'python',
+  ARRAY['gemini', 'vertex-ai', 'fine-tuning', 'ai-ml']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Cloud Functions v2 Go Serverless Engine',
+  'cloud-functions-go-serverless-skill',
+  'Build idiomatic Go HTTP and Eventarc cloud functions with structured logging and OpenTelemetry tracing.',
+  'gemini',
+  'skills',
+  'backend',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/functions-go/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Cloud Functions Go Skill
+Register functions with functions.HTTP.
+Inject GCP trace IDs into slog context for log correlation.
+Reuse HTTP connection pools across function warm invocations.',
+  'Build idiomatic Go HTTP and Eventarc cloud functions with structured logging and OpenTelemetry tracing.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/functions-go.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/functions-go/SKILL.md',
+  '.gemini/functions-go/SKILL.md',
+  'go',
+  ARRAY['gemini', 'cloud-functions', 'golang', 'serverless']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Android Jetpack Compose Architecture Skill',
+  'android-jetpack-compose-skill',
+  'Declarative Android UI patterns with Jetpack Compose, ViewModel state hoisting, and Navigation Compose.',
+  'gemini',
+  'skills',
+  'frontend',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/compose/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Jetpack Compose Standards
+Hoist state to ViewModel; keep composables stateless where possible.
+Use rememberSaveable for configuration change persistence.
+Ensure composables take a Modifier as their first optional parameter.',
+  'Declarative Android UI patterns with Jetpack Compose, ViewModel state hoisting, and Navigation Compose.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/compose.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/compose/SKILL.md',
+  '.gemini/compose/SKILL.md',
+  'kotlin',
+  ARRAY['gemini', 'android', 'compose', 'kotlin']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Google Kubernetes Engine (GKE) Autopilot Operator',
+  'gke-autopilot-operator-skill',
+  'Managed GKE Autopilot operations: Workload Identity Federation, Gateway API, and horizontal pod autoscaling.',
+  'gemini',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/gke-autopilot/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# GKE Autopilot Guidelines
+Bind Kubernetes service accounts to GCP IAM via Workload Identity.
+Use Gateway API instead of deprecated Ingress controllers.
+Configure HPA based on custom Cloud Monitoring metrics.',
+  'Managed GKE Autopilot operations: Workload Identity Federation, Gateway API, and horizontal pod autoscaling.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/gke.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/gke-autopilot/SKILL.md',
+  '.gemini/gke-autopilot/SKILL.md',
+  'yaml',
+  ARRAY['gemini', 'gke', 'kubernetes', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Cloud Storage & Media CDN Caching Skill',
+  'cloud-storage-cdn-caching-skill',
+  'High-throughput asset delivery using Google Cloud Storage, signed URLs, and Cloud CDN edge caching.',
+  'gemini',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-storage/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Cloud Storage & CDN Patterns
+Generate V4 signed URLs for secure direct-to-bucket client uploads.
+Configure Cache-Control: public, max-age=31536000, immutable for hashed assets.
+Enable bucket versioning and lifecycle deletion policies.',
+  'High-throughput asset delivery using Google Cloud Storage, signed URLs, and Cloud CDN edge caching.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/storage.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/cloud-storage/SKILL.md',
+  '.gemini/cloud-storage/SKILL.md',
+  'python',
+  ARRAY['gemini', 'cloud-storage', 'cdn', 'devops']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Cloud Spanner Distributed Consistency Skill',
+  'cloud-spanner-distributed-skill',
+  'Globally distributed relational schema design, interleaved tables, and read-write transaction safety.',
+  'gemini',
+  'skills',
+  'backend',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/spanner/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Cloud Spanner Standards
+Never use monotonically increasing sequential primary keys (UUIDv4 instead).
+Interleave child tables within parent tables for co-located storage.
+Use read-only transactions for stale read operations to avoid lock contention.',
+  'Globally distributed relational schema design, interleaved tables, and read-write transaction safety.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/spanner.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/spanner/SKILL.md',
+  '.gemini/spanner/SKILL.md',
+  'sql',
+  ARRAY['gemini', 'spanner', 'database', 'distributed']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Firebase Auth & Security Rules Hardening',
+  'firebase-auth-security-rules-skill',
+  'Firestore and Cloud Storage declarative security rules with JWT claim validation and rate limiting.',
+  'gemini',
+  'skills',
+  'backend',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/firebase-rules/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Firebase Security Rules
+Enforce request.auth != null on all sensitive documents.
+Validate incoming document schema types with custom helper functions.
+Never allow open write access; enforce owner-based tenant isolation.',
+  'Firestore and Cloud Storage declarative security rules with JWT claim validation and rate limiting.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/firebase.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/firebase-rules/SKILL.md',
+  '.gemini/firebase-rules/SKILL.md',
+  'javascript',
+  ARRAY['gemini', 'firebase', 'security', 'firestore']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Google Workspace Add-on Automation Skill',
+  'google-workspace-addon-automation-skill',
+  'Automate Google Sheets, Gmail, and Drive workflows with Google Apps Script and Gemini Function Calling.',
+  'gemini',
+  'skills',
+  'tools',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/workspace-addon/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Workspace Add-on Automation
+Define custom card navigation using CardService.
+Expose spreadsheet data to Gemini for automated financial summary creation.
+Cache OAuth tokens safely using PropertiesService.getUserProperties().',
+  'Automate Google Sheets, Gmail, and Drive workflows with Google Apps Script and Gemini Function Calling.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/workspace.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/workspace-addon/SKILL.md',
+  '.gemini/workspace-addon/SKILL.md',
+  'javascript',
+  ARRAY['gemini', 'workspace', 'automation', 'tools']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Google Cloud Dataflow Apache Beam Pipeline',
+  'cloud-dataflow-apache-beam-skill',
+  'Unified streaming and batch data processing pipeline using Apache Beam on Google Cloud Dataflow.',
+  'gemini',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/dataflow/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Apache Beam Dataflow Standards
+Use sliding or tumbling windows for real-time stream aggregation.
+Implement Dead Letter PCollections for unparseable JSON records.
+Scale worker nodes dynamically using autoscalingAlgorithm=THROUGHPUT_BASED.',
+  'Unified streaming and batch data processing pipeline using Apache Beam on Google Cloud Dataflow.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/dataflow.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/dataflow/SKILL.md',
+  '.gemini/dataflow/SKILL.md',
+  'python',
+  ARRAY['gemini', 'dataflow', 'apache-beam', 'streaming']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Security Command Center Threat Remediation',
+  'security-command-center-remediation-skill',
+  'Automated security posture management and CIS benchmark violation remediation on GCP.',
+  'gemini',
+  'skills',
+  'devops',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/scc-remediation/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Security Command Center Automation
+Listen to SCC findings over Pub/Sub topics.
+Trigger automated Cloud Functions to revoke publicly exposed IAM policies.
+Enforce organization policies preventing external IP creation on compute instances.',
+  'Automated security posture management and CIS benchmark violation remediation on GCP.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/scc.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/scc-remediation/SKILL.md',
+  '.gemini/scc-remediation/SKILL.md',
+  'python',
+  ARRAY['gemini', 'security', 'gcp', 'compliance']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Cloud Speech-to-Text & Diarization Workflow',
+  'cloud-speech-diarization-workflow-skill',
+  'High-accuracy multi-speaker audio transcription and speaker diarization using Chirp v2 models.',
+  'gemini',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/speech-diarization/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Speech Diarization Workflow
+Configure SpeakerDiarizationConfig with min and max speaker counts.
+Feed audio files asynchronously via Cloud Storage URIs.
+Combine diarized segments into chronological conversation transcripts.',
+  'High-accuracy multi-speaker audio transcription and speaker diarization using Chirp v2 models.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/speech.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/speech-diarization/SKILL.md',
+  '.gemini/speech-diarization/SKILL.md',
+  'python',
+  ARRAY['gemini', 'speech-to-text', 'audio', 'ai-ml']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Document AI Intelligent Form & Table Parser',
+  'document-ai-form-parser-skill',
+  'Extract key-value pairs, nested tables, and entities from complex contracts and financial reports.',
+  'gemini',
+  'skills',
+  'ai-ml',
+  'https://raw.githubusercontent.com/google-gemini/gemini-skills/main/document-ai/SKILL.md',
+  'https://github.com/google-gemini/gemini-skills',
+  'google-gemini',
+  'gemini-skills',
+  4230,
+  380,
+  160,
+  '# Document AI Form Parser
+Initialize DocumentProcessorServiceClient with specialized Form Parser.
+Traverse document.pages to inspect table header and body cells.
+Normalize confidence scores and output clean JSON structures.',
+  'Extract key-value pairs, nested tables, and entities from complex contracts and financial reports.',
+  'mkdir -p .gemini/skills && curl -o .gemini/skills/docai.md https://raw.githubusercontent.com/google-gemini/gemini-skills/main/document-ai/SKILL.md',
+  '.gemini/document-ai/SKILL.md',
+  'python',
+  ARRAY['gemini', 'document-ai', 'ocr', 'ai-ml']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'TypeScript Strict & Functional Core',
+  'typescript-strict-functional-core',
+  'GitHub Copilot instructions enforcing immutable data flow, Discriminated Unions, and zero ''any'' casts.',
+  'copilot',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/typescript.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot TypeScript Standards
+Strict null checks enabled; never use any or non-null assertion !.
+Prefer Discriminated Unions over inheritance.
+Use Readonly<T> and as const for constant configuration dictionaries.',
+  'Strict null checks enabled; never use any or non-null assertion !. Prefer Discriminated Unions.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/typescript.md',
+  '.github/copilot-instructions.md',
+  'typescript',
+  ARRAY['copilot', 'typescript', 'standards', 'rules']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -909,22 +4271,509 @@ INSERT INTO skills (
   'https://github.com/github/copilot-instructions',
   'github',
   'copilot-instructions',
-  4800,
-  390,
-  170,
-  '# Go Copilot Guidelines
-- Accept interfaces, return structs.
-- Wrap errors with fmt.Errorf("...: %w", err).
-- Never use panic() in HTTP handlers.',
+  3890,
+  310,
+  140,
+  '# Copilot Go Guidelines
+Accept interfaces, return structs.
+Wrap errors with fmt.Errorf("...: %w", err).
+Never use panic() in HTTP handlers; return proper error codes.',
   'Accept interfaces, return structs. Wrap errors with %w. Never use panic() in HTTP handlers.',
   'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/go.md',
   '.github/copilot-instructions.md',
   'go',
-  ARRAY['copilot', 'go', 'backend', 'idiomatic']::TEXT[],
+  ARRAY['copilot', 'golang', 'clean-code', 'rules']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Python Modern Typing & Ruff Linting Copilot Rule',
+  'python-typing-ruff-copilot-rule',
+  'Enforce Python 3.11+ type hints, Pydantic v2 validation, and Ruff strict lint rules.',
+  'copilot',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/python.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot Python Standards
+Use native union syntax (X | Y) instead of Optional or Union.
+Annotate all function signatures with argument and return types.
+Prefer dataclasses or Pydantic BaseModel for structured data.',
+  'Enforce Python 3.11+ type hints, Pydantic v2 validation, and Ruff strict lint rules.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/python.md',
+  '.github/copilot-instructions.md',
+  'python',
+  ARRAY['copilot', 'python', 'typing', 'ruff']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Rust Memory Safety & Zero-Copy Copilot Rule',
+  'rust-memory-safety-zero-copy-copilot-rule',
+  'Idiomatic Rust rules: explicit lifetimes, borrowing over cloning, and compile-time concurrency.',
+  'copilot',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/rust.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot Rust Standards
+Avoid unnecessary .clone() calls; pass references (&T) where ownership is not needed.
+Use thiserror for library errors and anyhow for binary application errors.
+Never use unsafe blocks without documented sound invariant proof.',
+  'Idiomatic Rust rules: explicit lifetimes, borrowing over cloning, and compile-time concurrency.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/rust.md',
+  '.github/copilot-instructions.md',
+  'rust',
+  ARRAY['copilot', 'rust', 'memory-safety', 'rules']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'React Server Components & Suspense Copilot Rule',
+  'react-server-components-suspense-copilot-rule',
+  'React 19 conventions: Server Actions, Suspense boundaries, and zero client bundle waterfalls.',
+  'copilot',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/react.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot React Standards
+Default to Server Components; add ''use client'' only for hooks and event handlers.
+Wrap asynchronous data-fetching components in <Suspense> boundaries.
+Use useOptimistic for immediate UI state feedback on mutations.',
+  'React 19 conventions: Server Actions, Suspense boundaries, and zero client bundle waterfalls.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/react.md',
+  '.github/copilot-instructions.md',
+  'typescript',
+  ARRAY['copilot', 'react', 'rsc', 'frontend']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Java Spring Boot 3 & Jakarta EE Copilot Rule',
+  'java-spring-boot-3-jakarta-copilot-rule',
+  'Constructor-based dependency injection, Jakarta Bean Validation, and immutable Java Records.',
+  'copilot',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/java.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot Java Standards
+Never use field injection (@Autowired on fields); use constructor injection.
+Use records for all DTOs and value objects.
+Validate requests using Jakarta validation annotations: @NotNull, @NotBlank, @Size.',
+  'Constructor-based dependency injection, Jakarta Bean Validation, and immutable Java Records.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/java.md',
+  '.github/copilot-instructions.md',
+  'java',
+  ARRAY['copilot', 'java', 'spring-boot', 'rules']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Swift 6 Concurrency & SwiftUI Copilot Rule',
+  'swift-6-concurrency-swiftui-copilot-rule',
+  'Strict concurrency checking in Swift 6, Actor isolation, Sendable conformance, and @Observable macro.',
+  'copilot',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/swift.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot Swift Standards
+Adopt @Observable macro for observation; eliminate legacy ObservableObject.
+Isolate shared mutable state within actors.
+Ensure data passed across task boundaries conforms to Sendable.',
+  'Strict concurrency checking in Swift 6, Actor isolation, Sendable conformance, and @Observable macro.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/swift.md',
+  '.github/copilot-instructions.md',
+  'swift',
+  ARRAY['copilot', 'swift', 'swiftui', 'ios']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Kotlin Coroutines & Flow Android Copilot Rule',
+  'kotlin-coroutines-flow-copilot-rule',
+  'Structured concurrency with Kotlin Coroutines, StateFlow UI bindings, and exception handlers.',
+  'copilot',
+  'rules',
+  'frontend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/kotlin.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot Kotlin Standards
+Always launch coroutines in structured viewModelScope or lifecycleScope.
+Expose immutable StateFlow<T> to UI layers.
+Handle network exceptions with runCatching and fold.',
+  'Structured concurrency with Kotlin Coroutines, StateFlow UI bindings, and exception handlers.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/kotlin.md',
+  '.github/copilot-instructions.md',
+  'kotlin',
+  ARRAY['copilot', 'kotlin', 'coroutines', 'android']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'C# .NET 8 LINQ & Memory Optimization Copilot Rule',
+  'csharp-dotnet-8-linq-memory-copilot-rule',
+  'Zero-allocation programming with Span<T>, Memory<T>, ArrayPool<T>, and frozen collections.',
+  'copilot',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/csharp.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot C# Standards
+Use ReadOnlySpan<char> for string parsing to avoid allocations.
+Prefer FrozenDictionary<TKey, TValue> for static read-only lookups.
+Avoid multiple LINQ enumeration; materialize with ToList() or iterate via foreach.',
+  'Zero-allocation programming with Span<T>, Memory<T>, ArrayPool<T>, and frozen collections.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/csharp.md',
+  '.github/copilot-instructions.md',
+  'csharp',
+  ARRAY['copilot', 'csharp', 'dotnet', 'performance']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'SQL Performance & EXPLAIN Plan Copilot Rule',
+  'sql-performance-explain-plan-copilot-rule',
+  'Index design, composite keys, avoiding SELECT *, and analyzing EXPLAIN ANALYZE cost outputs.',
+  'copilot',
+  'rules',
+  'backend',
+  'https://raw.githubusercontent.com/github/copilot-instructions/main/sql.md',
+  'https://github.com/github/copilot-instructions',
+  'github',
+  'copilot-instructions',
+  3890,
+  310,
+  140,
+  '# Copilot SQL Standards
+Never write SELECT * in production application queries.
+Order composite index columns starting with the most selective equality filter.
+Avoid applying functions on indexed columns in WHERE clauses.',
+  'Index design, composite keys, avoiding SELECT *, and analyzing EXPLAIN ANALYZE cost outputs.',
+  'curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/github/copilot-instructions/main/sql.md',
+  '.github/copilot-instructions.md',
+  'sql',
+  ARRAY['copilot', 'sql', 'performance', 'indexing']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'ReAct Reasoning Framework Prompt',
+  'react-reasoning-framework-prompt',
+  'Standardized Thought-Action-Observation loop prompt template for complex multi-step tool use.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/react-loop.md',
+  'https://github.com/prompt-engineering/awesome-prompts',
+  'prompt-engineering',
+  'awesome-prompts',
+  7450,
+  890,
+  310,
+  '# ReAct Reasoning Framework
+Solve problems by alternating between Thought, Action, and Observation until final deliverable is verified.
+Structure:
+Thought: [Analyze current state]
+Action: [Execute single tool call]
+Observation: [Inspect real tool output]',
+  'Solve problems by alternating between Thought, Action, and Observation until final deliverable is verified.',
+  'curl -o prompts/react-loop.md https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/react-loop.md',
+  'prompts/react-loop.md',
+  'markdown',
+  ARRAY['react', 'reasoning', 'prompt-engineering', 'frameworks']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -944,22 +4793,39 @@ INSERT INTO skills (
   'https://github.com/langchain-ai/langgraph',
   'langchain-ai',
   'langgraph',
-  14200,
-  1850,
-  620,
-  '# LangGraph Orchestration
-- Define TypedDict state schema.
-- Connect nodes via conditional edges.
-- Persist state checkpointing using PostgresSaver.',
+  9200,
+  1100,
+  450,
+  '# LangGraph StateGraph Architecture
+Define TypedDict state schema.
+Connect nodes via conditional edges and routing functions.
+Persist state checkpoints using PostgresSaver or MemorySaver.',
   'Define TypedDict state schema. Connect nodes via conditional edges. Persist state checkpointing.',
   'pip install -U langgraph langchain-core',
   'README.md',
   'python',
-  ARRAY['langgraph', 'agents', 'frameworks', 'python']::TEXT[],
+  ARRAY['langgraph', 'agents', 'multi-agent', 'python']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
 
 INSERT INTO skills (
@@ -979,18 +4845,404 @@ INSERT INTO skills (
   'https://github.com/open-agent-tools/openapi-generator',
   'open-agent-tools',
   'openapi-generator',
-  3100,
-  270,
-  140,
-  '# OpenAPI Tool Generator
-Parses JSON/YAML OpenAPI specifications into standardized JSON Schema functions for Claude, OpenAI, and Gemini models.',
+  1640,
+  120,
+  85,
+  '# OpenAPI Agent Generator
+Parses JSON/YAML OpenAPI specifications into standardized JSON Schema functions for AI agents.
+Generates typed input schemas and handles query parameter serialization.',
   'Parses JSON/YAML OpenAPI specifications into standardized JSON Schema functions for AI agents.',
   'npx -y openapi-agent-generator --spec swagger.json',
   'cli.ts',
   'typescript',
-  ARRAY['openapi', 'tools', 'generator', 'json-schema']::TEXT[],
+  ARRAY['openapi', 'agent-tools', 'generator', 'tools']::TEXT[],
   NOW()
 ) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
   stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
   stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'System Architecture & Threat Modeling Prompt',
+  'system-architecture-threat-modeling-prompt',
+  'STRIDE threat modeling and architectural validation prompt for mission-critical cloud deployments.',
+  'generic',
+  'prompts',
+  'devops',
+  'https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/threat-modeling.md',
+  'https://github.com/prompt-engineering/awesome-prompts',
+  'prompt-engineering',
+  'awesome-prompts',
+  7450,
+  890,
+  310,
+  '# Threat Modeling Prompt
+Perform STRIDE evaluation on each trust boundary:
+- Spoofing
+- Tampering
+- Repudiation
+- Information Disclosure
+- Denial of Service
+- Elevation of Privilege',
+  'Perform STRIDE evaluation on each trust boundary: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation.',
+  'curl -o prompts/threat-modeling.md https://raw.githubusercontent.com/prompt-engineering/awesome-prompts/main/threat-modeling.md',
+  'prompts/threat-modeling.md',
+  'markdown',
+  ARRAY['security', 'threat-modeling', 'stride', 'prompts']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'AutoGen Conversable Multi-Agent Team Framework',
+  'autogen-conversable-multi-agent-framework',
+  'Coordinated multi-agent dialogue patterns: user proxy execution, group chat manager, and round-robin speaker selection.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://github.com/microsoft/autogen',
+  'https://github.com/microsoft/autogen',
+  'microsoft',
+  'autogen',
+  34100,
+  4800,
+  680,
+  '# AutoGen Multi-Agent Patterns
+Configure ConversableAgent instances with custom system messages.
+Use GroupChat and GroupChatManager for multi-persona deliberation.
+Enable Docker command execution sandbox for safety.',
+  'Coordinated multi-agent dialogue patterns: user proxy execution, group chat manager, and speaker selection.',
+  'pip install -U autogen-agentchat',
+  'README.md',
+  'python',
+  ARRAY['autogen', 'multi-agent', 'frameworks', 'python']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'CrewAI Role-Based Multi-Agent Task Orchestrator',
+  'crewai-role-based-task-orchestrator',
+  'Collaborative agent crews with dedicated roles, goals, backstories, memory, and sequential or hierarchical processes.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://github.com/crewAIInc/crewAI',
+  'https://github.com/crewAIInc/crewAI',
+  'crewAIInc',
+  'crewAI',
+  21900,
+  2700,
+  520,
+  '# CrewAI Orchestration
+Define Agent with role, goal, and backstory.
+Bind Tasks with explicit expected_output and assigned agent.
+Execute Crew with Process.sequential or Process.hierarchical.',
+  'Collaborative agent crews with dedicated roles, goals, backstories, memory, and task pipelines.',
+  'pip install -U crewai',
+  'README.md',
+  'python',
+  ARRAY['crewai', 'agents', 'orchestration', 'frameworks']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Semantic Kernel Planner & Native Plugin SDK',
+  'semantic-kernel-planner-native-sdk',
+  'Enterprise AI orchestration with Microsoft Semantic Kernel, native function calling plugins, and step planners.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://github.com/microsoft/semantic-kernel',
+  'https://github.com/microsoft/semantic-kernel',
+  'microsoft',
+  'semantic-kernel',
+  22400,
+  3100,
+  410,
+  '# Semantic Kernel Architecture
+Import native C# or Python plugins using KernelPluginFactory.
+Execute multi-step plans using FunctionCallingStepwisePlanner.
+Enforce input sanitization via KernelFilter pipelines.',
+  'Enterprise AI orchestration with Microsoft Semantic Kernel, native function calling plugins, and planners.',
+  'dotnet add package Microsoft.SemanticKernel',
+  'README.md',
+  'csharp',
+  ARRAY['semantic-kernel', 'dotnet', 'plugins', 'frameworks']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'LlamaIndex RAG Agent & Vector Router Workflow',
+  'llamaindex-rag-agent-vector-router',
+  'Agentic Retrieval-Augmented Generation with document chunking, router query engines, and sub-question synthesis.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://github.com/run-llama/llama_index',
+  'https://github.com/run-llama/llama_index',
+  'run-llama',
+  'llama_index',
+  36800,
+  4900,
+  630,
+  '# LlamaIndex RAG Agent
+Parse documents with SentenceSplitter and ingest into VectorStoreIndex.
+Wrap query engines in QueryEngineTool definitions.
+Use RouterQueryEngine to route between semantic search and SQL tables.',
+  'Agentic Retrieval-Augmented Generation with document chunking, router query engines, and sub-question synthesis.',
+  'pip install -U llama-index',
+  'README.md',
+  'python',
+  ARRAY['llamaindex', 'rag', 'vector-search', 'frameworks']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'DSPy Declarative Self-Improving Prompt Optimizer',
+  'dspy-declarative-prompt-optimizer',
+  'Compiling declarative language model modules, teleprompters, few-shot bootstrapping, and automatic metric optimization.',
+  'generic',
+  'frameworks',
+  'ai-ml',
+  'https://github.com/stanfordnlp/dspy',
+  'https://github.com/stanfordnlp/dspy',
+  'stanfordnlp',
+  'dspy',
+  18700,
+  1400,
+  490,
+  '# DSPy Declarative Prompting
+Define dspy.Signature specifying input and output fields.
+Compose reasoning pipelines with dspy.ChainOfThought.
+Compile and optimize prompt demonstrations using BootstrapFewShotWithRandomSearch.',
+  'Compiling declarative language model modules, teleprompters, few-shot bootstrapping, and metric optimization.',
+  'pip install -U dspy-ai',
+  'README.md',
+  'python',
+  ARRAY['dspy', 'prompt-optimization', 'nlp', 'frameworks']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
+  updated_at = NOW();
+
+INSERT INTO skills (
+  name, slug, description, platform, category, subcategory,
+  source_url, repo_url, repo_owner, repo_name,
+  stars_count, forks_count, stars_velocity,
+  content_raw, content_preview, install_snippet, file_path, language, tags,
+  last_synced_at
+) VALUES (
+  'Mem0 Persistent Multi-Session Memory Engine',
+  'mem0-persistent-session-memory-engine',
+  'Dynamic user and agent memory layer with entity deduplication, conflict resolution, and vector persistence.',
+  'generic',
+  'tools',
+  'tools',
+  'https://github.com/mem0ai/mem0',
+  'https://github.com/mem0ai/mem0',
+  'mem0ai',
+  'mem0',
+  24300,
+  2600,
+  590,
+  '# Mem0 Memory Layer
+Store key user preferences and project context automatically.
+Retrieve personalized context using semantic vector similarity.
+Resolve conflicting statements intelligently over time.',
+  'Dynamic user and agent memory layer with entity deduplication, conflict resolution, and vector persistence.',
+  'pip install -U mem0ai',
+  'README.md',
+  'python',
+  ARRAY['mem0', 'memory', 'agent-memory', 'tools']::TEXT[],
+  NOW()
+) ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  platform = EXCLUDED.platform,
+  category = EXCLUDED.category,
+  subcategory = EXCLUDED.subcategory,
+  source_url = EXCLUDED.source_url,
+  repo_url = EXCLUDED.repo_url,
+  repo_owner = EXCLUDED.repo_owner,
+  repo_name = EXCLUDED.repo_name,
+  stars_count = EXCLUDED.stars_count,
+  forks_count = EXCLUDED.forks_count,
+  stars_velocity = EXCLUDED.stars_velocity,
+  content_raw = EXCLUDED.content_raw,
+  content_preview = EXCLUDED.content_preview,
+  install_snippet = EXCLUDED.install_snippet,
+  file_path = EXCLUDED.file_path,
+  language = EXCLUDED.language,
+  tags = EXCLUDED.tags,
+  last_synced_at = NOW(),
   updated_at = NOW();
