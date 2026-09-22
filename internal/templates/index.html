@@ -1,0 +1,276 @@
+{{define "content"}}
+<div class="relative overflow-hidden">
+  <!-- Subtle Gradient Background Glows -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-violet-600/15 to-cyan-500/15 blur-3xl -z-10 pointer-events-none rounded-full"></div>
+
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-950/60 border border-violet-800/50 text-violet-300 mb-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+      The Unified Agentic Registry
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+      Discover the best <br class="hidden sm:inline" />
+      <span class="bg-gradient-to-r from-violet-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">AI agent skills</span>
+    </h1>
+
+    <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 mb-10 leading-relaxed">
+      Aggregating and ranking Cursor rules, Claude AGENTS.md, Gemini skills, and MCP servers across GitHub and the open ecosystem.
+    </p>
+
+    <!-- Large Centered Search Bar -->
+    <div class="max-w-2xl mx-auto mb-6">
+      <form action="/search" method="GET" class="search-input-wrapper relative flex items-center bg-slate-900 border border-slate-700/80 rounded-2xl p-2 shadow-2xl">
+        <div class="pl-3 pr-2 text-slate-400">
+          <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input type="text" name="q" id="search-input"
+               placeholder="Search 1,000+ agent rules, prompts, MCP servers (press / to focus)..."
+               class="w-full bg-transparent text-sm sm:text-base text-white placeholder-slate-400 focus:outline-none py-2 px-1">
+        <button type="submit" class="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition shadow-lg shadow-violet-600/30">
+          <span>Search</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Quick Filter Suggestions -->
+    <div class="flex items-center justify-center gap-2 flex-wrap text-xs text-slate-400">
+      <span class="text-slate-500">Popular:</span>
+      <a href="/search?q=cursorrules" class="hover:text-violet-300 hover:underline">#cursorrules</a>
+      <span class="text-slate-700">·</span>
+      <a href="/search?q=fastapi" class="hover:text-violet-300 hover:underline">#fastapi</a>
+      <span class="text-slate-700">·</span>
+      <a href="/search?q=mcp" class="hover:text-violet-300 hover:underline">#mcp</a>
+      <span class="text-slate-700">·</span>
+      <a href="/search?q=golang" class="hover:text-violet-300 hover:underline">#golang</a>
+      <span class="text-slate-700">·</span>
+      <a href="/search?q=nextjs" class="hover:text-violet-300 hover:underline">#nextjs</a>
+    </div>
+  </section>
+
+  <!-- Stats Row (Animated Counters) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono" data-target="{{if .Stats}}{{.Stats.TotalSkills}}{{else}}0{{end}}">
+          {{if .Stats}}{{formatNumber .Stats.TotalSkills}}{{else}}0{{end}}
+        </div>
+        <div class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Skills Indexed</div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-violet-400 font-mono" data-target="{{if .Stats}}{{.Stats.TotalStars}}{{else}}0{{end}}">
+          {{if .Stats}}{{formatNumber .Stats.TotalStars}}{{else}}0{{end}}
+        </div>
+        <div class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Total Stars Monitored</div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono" data-target="{{if .Stats}}{{.Stats.TotalSources}}{{else}}0{{end}}">
+          {{if .Stats}}{{formatNumber .Stats.TotalSources}}{{else}}0{{end}}
+        </div>
+        <div class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Sources Monitored</div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono" data-target="5">
+          5
+        </div>
+        <div class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Platforms Covered</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by Platform -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Browse by Platform</h2>
+        <p class="text-sm text-slate-400 mt-0.5">Filter skills tailored to your AI coding environment</p>
+      </div>
+    </div>
+
+    <!-- Platform Filter Pills -->
+    <div class="flex items-center gap-3 overflow-x-auto pb-3 mb-6 no-scrollbar">
+      <a href="/platform/cursor"
+         hx-get="/platform/cursor"
+         hx-target="#platform-skills-grid"
+         hx-indicator="#platform-spinner"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold badge-cursor hover:scale-105 transition cursor-pointer">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+        Cursor Rules
+      </a>
+      <a href="/platform/claude"
+         hx-get="/platform/claude"
+         hx-target="#platform-skills-grid"
+         hx-indicator="#platform-spinner"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold badge-claude hover:scale-105 transition cursor-pointer">
+        <span class="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
+        Claude AGENTS.md
+      </a>
+      <a href="/platform/gemini"
+         hx-get="/platform/gemini"
+         hx-target="#platform-skills-grid"
+         hx-indicator="#platform-spinner"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold badge-gemini hover:scale-105 transition cursor-pointer">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+        Gemini Skills
+      </a>
+      <a href="/platform/mcp"
+         hx-get="/platform/mcp"
+         hx-target="#platform-skills-grid"
+         hx-indicator="#platform-spinner"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold badge-mcp hover:scale-105 transition cursor-pointer">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+        MCP Servers
+      </a>
+      <a href="/platform/copilot"
+         hx-get="/platform/copilot"
+         hx-target="#platform-skills-grid"
+         hx-indicator="#platform-spinner"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold badge-copilot hover:scale-105 transition cursor-pointer">
+        <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+        GitHub Copilot
+      </a>
+    </div>
+
+    <!-- Platform Skills Loading Indicator -->
+    <div id="platform-spinner" class="htmx-indicator py-4 text-center">
+      <div class="inline-flex items-center gap-2 text-xs text-violet-400 font-medium">
+        <svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Loading platform skills...
+      </div>
+    </div>
+
+    <!-- Platform Target Container (Defaults to Initial Cards) -->
+    <div id="platform-skills-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {{range $index, $skill := .Skills}}
+          {{if lt $index 6}}
+            {{template "skill_card" $skill}}
+          {{end}}
+        {{end}}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Skills (Top 8 Responsive Grid) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <span>Trending Skills</span>
+          <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-violet-950/60 text-violet-300 border border-violet-800/40">
+            Top 8
+          </span>
+        </h2>
+        <p class="text-sm text-slate-400 mt-0.5">Rapidly gaining adoption across developer communities</p>
+      </div>
+
+      <a href="/trending" class="inline-flex items-center gap-1 text-sm font-semibold text-violet-400 hover:text-violet-300 transition">
+        <span>View all trending</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Trending Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {{range $index, $skill := .Skills}}
+        {{if lt $index 8}}
+          {{template "skill_card" $skill}}
+        {{end}}
+      {{else}}
+        <div class="col-span-full py-10 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-slate-800">
+          No trending skills available yet.
+        </div>
+      {{end}}
+    </div>
+  </section>
+
+  <!-- Browse by Category -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Browse by Category</h2>
+        <p class="text-sm text-slate-400 mt-0.5">Explore by artifact type, prompts, and server protocols</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <!-- Rules -->
+      <a href="/category/rules" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "rules"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">Rules</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "rules"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+
+      <!-- Skills -->
+      <a href="/category/skills" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-violet-500/10 text-violet-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "skills"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">Skills</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "skills"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+
+      <!-- MCP Servers -->
+      <a href="/category/mcp_servers" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "mcp_servers"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">MCP Servers</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "mcp_servers"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+
+      <!-- Prompts -->
+      <a href="/category/prompts" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "prompts"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">Prompts</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "prompts"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+
+      <!-- Frameworks -->
+      <a href="/category/frameworks" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "frameworks"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">Frameworks</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "frameworks"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+
+      <!-- Tools -->
+      <a href="/category/tools" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-violet-500/40 rounded-xl p-4 text-center transition group flex flex-col items-center">
+        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+          {{categoryIcon "tools"}}
+        </div>
+        <span class="text-sm font-semibold text-slate-200 group-hover:text-white">Tools</span>
+        <span class="text-xs text-slate-400 mt-1 font-mono">
+          {{if and .Stats .Stats.CategoryCounts}}{{index .Stats.CategoryCounts "tools"}}{{else}}0{{end}} skills
+        </span>
+      </a>
+    </div>
+  </section>
+</div>
+{{end}}

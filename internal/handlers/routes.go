@@ -37,12 +37,16 @@ func RegisterRoutes(r chi.Router, h *Handlers, authService service.AuthService, 
 	r.Use(chimiddleware.Recoverer)
 	r.Use(middleware.WithUser(authService))
 
+	// Static files
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
 	// Health probes
 	r.Get("/healthz", h.Health.Healthz)
 	r.Get("/readyz", h.Health.Readyz)
 
 	// Web routes
 	r.Get("/", h.Skill.HandleLanding)
+	r.Get("/login", h.Auth.HandleLoginPage)
 	r.Get("/search", h.Search.HandleSearchPage)
 	r.Get("/skill/{slug}", h.Skill.HandleSkillDetail)
 	r.Get("/trending", h.Skill.HandleTrendingPage)
