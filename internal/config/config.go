@@ -13,6 +13,8 @@ type Config struct {
 	SessionSecret      string
 	BaseURL            string
 	Env                string
+	GitHubToken        string
+	ChromeBin          string
 }
 
 func Load() *Config {
@@ -50,6 +52,11 @@ func Load() *Config {
 		env = "development"
 	}
 
+	chromeBin := os.Getenv("CHROME_BIN")
+	if chromeBin == "" {
+		chromeBin = "/usr/bin/chromium-browser"
+	}
+
 	return &Config{
 		AppPort:            port,
 		DatabaseURL:        dbURL,
@@ -58,5 +65,7 @@ func Load() *Config {
 		SessionSecret:      sessionSecret,
 		BaseURL:            baseURL,
 		Env:                env,
+		GitHubToken:        os.Getenv("GITHUB_TOKEN"),
+		ChromeBin:          chromeBin,
 	}
 }
