@@ -9,3 +9,12 @@ logs/
 *.log
 agentsight_pgdata/
 server
+
+# Agent & Orchestrator artifacts
+ORCHESTRATOR.md
+mandates_common.md
+run.sh
+tasks/
+contracts/
+.hermesignore
+EXECUTION_SUMMARY.md
